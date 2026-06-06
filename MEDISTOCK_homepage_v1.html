@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MEDISTOCK — 인증 기반 글로벌 중고 의료기기 거래 플랫폼 (가칭)</title>
+<meta name="description" content="MEDISTOCK은 IEC 63077·ISO 13485 표준에 기반한 인증·등급제로 한국과 글로벌 시장을 연결하는 중고 의료기기 거래 플랫폼입니다. 부흥팀이 운영하는 신뢰의 중개자입니다." />
+<style>
+  :root {
+    --navy-900: #0a1f3d;
+    --navy-800: #102a52;
+    --navy-700: #1a3a6d;
+    --navy-500: #2c5491;
+    --teal-500: #14b8a6;
+    --teal-400: #2dd4bf;
+    --gold-500: #d4a843;
+    --slate-50:  #f6f8fb;
+    --slate-100: #eef2f7;
+    --slate-200: #dbe2ec;
+    --slate-400: #8a98ad;
+    --slate-600: #4a5568;
+    --slate-800: #1f2937;
+    --white: #ffffff;
+    --shadow-sm: 0 1px 2px rgba(10, 31, 61, 0.06);
+    --shadow-md: 0 8px 24px rgba(10, 31, 61, 0.08);
+    --shadow-lg: 0 20px 50px rgba(10, 31, 61, 0.12);
+    --radius: 12px;
+    --radius-lg: 18px;
+    --max-w: 1180px;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Segoe UI",
+      Roboto, "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", sans-serif;
+    color: var(--slate-800);
+    background: var(--white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* Language toggle */
+  .lang-en .lang-ko { display: none; }
+  .lang-en .lang-en-only { display: inline; }
+  .lang-ko .lang-en-only { display: none; }
+  .lang-en [data-ko], .lang-ko [data-en] { display: none; }
+  .lang-en [data-en], .lang-ko [data-ko] { display: revert; }
+
+  /* Layout */
+  .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+  section { padding: 96px 0; }
+  section.tight { padding: 64px 0; }
+
+  /* NAV */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--slate-100);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 24px; max-width: var(--max-w); margin: 0 auto;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 800; font-size: 20px; letter-spacing: -0.02em;
+    color: var(--navy-900); text-decoration: none;
+  }
+  .logo-mark {
+    width: 32px; height: 32px;
+    background: linear-gradient(135deg, var(--navy-700), var(--teal-500));
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: 900; font-size: 14px;
+  }
+  .badge-tentative {
+    font-size: 11px; font-weight: 600; padding: 2px 8px;
+    background: var(--slate-100); color: var(--slate-600);
+    border-radius: 999px; margin-left: 6px;
+  }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a {
+    color: var(--slate-600); text-decoration: none; font-size: 14px; font-weight: 500;
+  }
+  .nav-links a:hover { color: var(--navy-700); }
+  .lang-toggle {
+    display: inline-flex; background: var(--slate-100); border-radius: 999px; padding: 2px;
+  }
+  .lang-toggle button {
+    border: 0; background: transparent; padding: 6px 14px;
+    font-size: 12px; font-weight: 600; color: var(--slate-600);
+    border-radius: 999px; cursor: pointer; letter-spacing: 0.04em;
+  }
+  .lang-toggle button.active {
+    background: var(--navy-900); color: var(--white);
+  }
+  @media (max-width: 760px) {
+    .nav-links a:not(.cta-mini) { display: none; }
+  }
+
+  /* HERO */
+  .hero {
+    background:
+      radial-gradient(800px 400px at 80% -20%, rgba(20,184,166,0.18), transparent 60%),
+      radial-gradient(700px 360px at 10% 110%, rgba(44,84,145,0.15), transparent 60%),
+      linear-gradient(180deg, #f8fafd 0%, #ffffff 100%);
+    padding: 96px 0 80px;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.15fr 1fr; gap: 56px; align-items: center;
+  }
+  @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 32px; } }
+  .eyebrow {
+    display: inline-block; font-size: 12px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--teal-500); margin-bottom: 16px;
+  }
+  h1.hero-title {
+    font-size: clamp(36px, 5vw, 56px); line-height: 1.1; letter-spacing: -0.025em;
+    color: var(--navy-900); font-weight: 800; margin: 0 0 20px;
+  }
+  .hero-sub {
+    font-size: 18px; color: var(--slate-600); margin: 0 0 32px; max-width: 580px;
+  }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 14px 24px; font-size: 15px; font-weight: 600;
+    border-radius: 10px; text-decoration: none; cursor: pointer;
+    border: 1px solid transparent; transition: all 0.15s ease;
+  }
+  .btn-primary {
+    background: var(--navy-900); color: var(--white);
+  }
+  .btn-primary:hover { background: var(--navy-700); transform: translateY(-1px); }
+  .btn-secondary {
+    background: var(--white); color: var(--navy-900); border-color: var(--slate-200);
+  }
+  .btn-secondary:hover { border-color: var(--navy-500); }
+  .btn-teal {
+    background: var(--teal-500); color: var(--white);
+  }
+  .btn-teal:hover { background: var(--teal-400); }
+  .arrow { font-size: 18px; line-height: 1; transform: translateY(-1px); }
+
+  /* Hero card */
+  .hero-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--slate-100);
+    padding: 28px;
+  }
+  .stat-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px; }
+  .stat {
+    background: var(--slate-50); border-radius: var(--radius); padding: 16px;
+  }
+  .stat-num { font-size: 26px; font-weight: 800; color: var(--navy-900); letter-spacing: -0.02em; }
+  .stat-label { font-size: 12px; color: var(--slate-600); margin-top: 4px; }
+  .trust-strip { display: flex; gap: 10px; flex-wrap: wrap; }
+  .trust-chip {
+    font-size: 11px; font-weight: 600; padding: 6px 12px;
+    background: var(--white); border: 1px solid var(--slate-200);
+    border-radius: 999px; color: var(--slate-600); letter-spacing: 0.02em;
+  }
+
+  /* Sections */
+  .section-eyebrow {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--teal-500); margin-bottom: 12px;
+  }
+  h2 {
+    font-size: clamp(28px, 3.5vw, 38px);
+    line-height: 1.15; letter-spacing: -0.02em;
+    color: var(--navy-900); font-weight: 800; margin: 0 0 16px;
+  }
+  .section-sub {
+    font-size: 17px; color: var(--slate-600); max-width: 760px; margin: 0 0 48px;
+  }
+
+  /* 3-col grid */
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  @media (max-width: 900px) {
+    .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+  .card {
+    background: var(--white); border: 1px solid var(--slate-100);
+    border-radius: var(--radius-lg); padding: 28px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .card-num {
+    font-size: 12px; font-weight: 700; color: var(--teal-500);
+    letter-spacing: 0.12em; margin-bottom: 10px;
+  }
+  .card-title { font-size: 19px; font-weight: 700; color: var(--navy-900); margin: 0 0 10px; line-height: 1.3; }
+  .card-body { font-size: 15px; color: var(--slate-600); margin: 0; }
+
+  /* Solution 4-pillars */
+  .pillar {
+    background: linear-gradient(180deg, var(--navy-900) 0%, var(--navy-800) 100%);
+    color: white; border-radius: var(--radius-lg); padding: 28px;
+  }
+  .pillar-title { font-size: 18px; font-weight: 700; margin: 0 0 10px; }
+  .pillar-body { font-size: 14px; color: rgba(255,255,255,0.78); margin: 0; }
+  .pillar-icon {
+    width: 44px; height: 44px; background: rgba(20,184,166,0.18);
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px; font-size: 22px;
+  }
+
+  /* How it works tabs */
+  .tabs {
+    display: inline-flex; background: var(--slate-100); padding: 4px;
+    border-radius: 12px; margin-bottom: 32px;
+  }
+  .tabs button {
+    border: 0; background: transparent; padding: 10px 22px;
+    font-size: 14px; font-weight: 600; color: var(--slate-600);
+    border-radius: 8px; cursor: pointer;
+  }
+  .tabs button.active {
+    background: var(--white); color: var(--navy-900); box-shadow: var(--shadow-sm);
+  }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  @media (max-width: 900px) { .steps { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
+  .step {
+    background: var(--slate-50); border-radius: var(--radius); padding: 20px;
+    border-left: 3px solid var(--teal-500);
+  }
+  .step-num { font-size: 11px; font-weight: 700; color: var(--teal-500); letter-spacing: 0.1em; }
+  .step-title { font-size: 16px; font-weight: 700; color: var(--navy-900); margin: 6px 0 6px; }
+  .step-body { font-size: 13px; color: var(--slate-600); margin: 0; }
+
+  /* Phase 1 spotlight */
+  .spotlight {
+    background: linear-gradient(135deg, var(--navy-900), var(--navy-700));
+    color: white; border-radius: var(--radius-lg); padding: 56px;
+  }
+  @media (max-width: 700px) { .spotlight { padding: 32px; } }
+  .spotlight h2 { color: white; }
+  .spotlight .section-eyebrow { color: var(--teal-400); }
+  .spotlight-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+  }
+  @media (max-width: 800px) { .spotlight-grid { grid-template-columns: 1fr; } }
+  .spotlight-list { list-style: none; padding: 0; margin: 0; }
+  .spotlight-list li {
+    padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.12);
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .spotlight-list li:last-child { border-bottom: 0; }
+  .check {
+    width: 22px; height: 22px; background: var(--teal-500); border-radius: 6px;
+    display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 13px; color: white; font-weight: 800;
+  }
+  .spotlight-li-text strong { display: block; font-weight: 700; color: white; }
+  .spotlight-li-text span { color: rgba(255,255,255,0.75); font-size: 14px; }
+
+  /* Standards strip */
+  .standards {
+    background: var(--slate-50); border-radius: var(--radius-lg); padding: 40px;
+  }
+  .grades { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 24px; }
+  @media (max-width: 700px) { .grades { grid-template-columns: repeat(2, 1fr); } }
+  .grade {
+    background: white; border-radius: 10px; padding: 16px; text-align: center;
+    border: 1px solid var(--slate-200);
+  }
+  .grade-letter {
+    font-size: 28px; font-weight: 900; color: var(--navy-900);
+    line-height: 1;
+  }
+  .grade-label { font-size: 12px; color: var(--slate-600); margin-top: 6px; }
+  .grade.S .grade-letter { color: var(--gold-500); }
+  .grade.A .grade-letter { color: var(--teal-500); }
+  .grade.B .grade-letter { color: var(--navy-500); }
+  .grade.C .grade-letter { color: var(--slate-400); }
+  .grade.D .grade-letter { color: #c95d5d; }
+
+  /* Forms */
+  .form-section {
+    background: linear-gradient(180deg, #f8fafd 0%, #ffffff 100%);
+  }
+  .form-wrap {
+    background: white; border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md); border: 1px solid var(--slate-100);
+    padding: 40px;
+  }
+  @media (max-width: 700px) { .form-wrap { padding: 24px; } }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+  .field { margin-bottom: 16px; }
+  .field label {
+    display: block; font-size: 13px; font-weight: 600; color: var(--navy-900);
+    margin-bottom: 6px;
+  }
+  .field label .req { color: #c95d5d; margin-left: 2px; }
+  .field input, .field select, .field textarea {
+    width: 100%; padding: 12px 14px; font-size: 15px;
+    border: 1px solid var(--slate-200); border-radius: 10px;
+    background: var(--white); color: var(--slate-800);
+    font-family: inherit;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none; border-color: var(--teal-500);
+    box-shadow: 0 0 0 3px rgba(20,184,166,0.18);
+  }
+  .field textarea { resize: vertical; min-height: 88px; }
+  .field-hint { font-size: 12px; color: var(--slate-400); margin-top: 4px; }
+  .form-note {
+    font-size: 13px; color: var(--slate-600);
+    background: var(--slate-50); padding: 14px 16px;
+    border-radius: 10px; margin-bottom: 24px;
+    border-left: 3px solid var(--teal-500);
+  }
+  .form-success {
+    display: none;
+    background: rgba(20,184,166,0.1); color: var(--teal-500);
+    padding: 16px; border-radius: 10px; font-weight: 600; margin-top: 16px;
+    font-size: 14px;
+  }
+  .form-success.show { display: block; }
+
+  /* About 부흥 */
+  .about {
+    display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; align-items: center;
+  }
+  @media (max-width: 900px) { .about { grid-template-columns: 1fr; } }
+  .assets { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .asset {
+    background: var(--slate-50); border-radius: var(--radius); padding: 18px;
+    border-top: 3px solid var(--teal-500);
+  }
+  .asset-title { font-size: 14px; font-weight: 700; color: var(--navy-900); margin-bottom: 6px; }
+  .asset-body { font-size: 13px; color: var(--slate-600); margin: 0; }
+
+  /* Footer */
+  footer {
+    background: var(--navy-900); color: rgba(255,255,255,0.7);
+    padding: 56px 0 32px;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+  }
+  @media (max-width: 800px) { .footer-grid { grid-template-columns: 1fr; } }
+  footer h4 { color: white; font-size: 14px; margin: 0 0 14px; font-weight: 700; }
+  footer a { color: rgba(255,255,255,0.7); text-decoration: none; display: block; font-size: 14px; padding: 4px 0; }
+  footer a:hover { color: white; }
+  .footer-bot {
+    border-top: 1px solid rgba(255,255,255,0.15);
+    margin-top: 40px; padding-top: 24px;
+    font-size: 12px; color: rgba(255,255,255,0.5);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+</style>
+</head>
+<body class="lang-ko">
+
+<!-- =============== NAV =============== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="#top">
+      <span class="logo-mark">M</span>
+      MEDISTOCK
+      <span class="badge-tentative" data-ko>가칭</span>
+      <span class="badge-tentative" data-en>Tentative</span>
+    </a>
+    <div class="nav-links">
+      <a href="#opportunity" data-ko>시장 기회</a><a href="#opportunity" data-en>Opportunity</a>
+      <a href="#solution" data-ko>솔루션</a><a href="#solution" data-en>Solution</a>
+      <a href="#how" data-ko>작동 방식</a><a href="#how" data-en>How it works</a>
+      <a href="#seller" data-ko>매도 의뢰</a><a href="#buyer" data-en>Buyer Inquiry</a>
+      <div class="lang-toggle" role="tablist" aria-label="Language">
+        <button id="btn-ko" class="active" onclick="setLang('ko')">KR</button>
+        <button id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- =============== HERO =============== -->
+<section id="top" class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow" data-ko>인증 기반 글로벌 거래 플랫폼</span>
+      <span class="eyebrow" data-en>Authenticated Global Marketplace</span>
+
+      <h1 class="hero-title" data-ko>
+        한국의 의료기기를,<br/>세계 어디서든 안심하고.
+      </h1>
+      <h1 class="hero-title" data-en>
+        Korean medical equipment,<br/>trusted globally.
+      </h1>
+
+      <p class="hero-sub" data-ko>
+        MEDISTOCK은 IEC 63077·ISO 13485 표준에 기반한 인증·등급제로
+        한국의 의료기기 공급자와 글로벌 바이어를 안전하게 연결합니다.
+        KREAM·StockX가 명품 신발에서 검증한 "인증 = 해자" 모델을
+        단가 100배의 의료기기 시장에 적용합니다.
+      </p>
+      <p class="hero-sub" data-en>
+        MEDISTOCK connects Korean suppliers of medical equipment with global buyers
+        through a certification and grading system based on IEC 63077 and ISO 13485.
+        We apply the "authentication moat" model proven by StockX and KREAM
+        to a market with 100× higher unit prices.
+      </p>
+
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#seller">
+          <span data-ko>장비 매각 의뢰 →</span>
+          <span data-en>Sell Equipment →</span>
+        </a>
+        <a class="btn btn-secondary" href="#buyer">
+          <span data-ko>바이어 사전등록</span>
+          <span data-en>Buyer Pre-register</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="stat-row">
+        <div class="stat">
+          <div class="stat-num">$21B → $24B</div>
+          <div class="stat-label" data-ko>글로벌 시장 (2025→2026)</div>
+          <div class="stat-label" data-en>Global market (2025→2026)</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">11%+</div>
+          <div class="stat-label" data-ko>APAC CAGR</div>
+          <div class="stat-label" data-en>APAC CAGR</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">40%</div>
+          <div class="stat-label" data-ko>한국 핸드헬드 초음파 점유율</div>
+          <div class="stat-label" data-en>KR share, handheld ultrasound</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">$6B</div>
+          <div class="stat-label" data-ko>한국 의료기기 수출 (2024)</div>
+          <div class="stat-label" data-en>KR med-device export (2024)</div>
+        </div>
+      </div>
+      <div class="trust-strip">
+        <span class="trust-chip">IEC 63077:2019</span>
+        <span class="trust-chip">ISO 13485:2016</span>
+        <span class="trust-chip">WHO Guideline 2025</span>
+        <span class="trust-chip">KGMP</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== OPPORTUNITY =============== -->
+<section id="opportunity">
+  <div class="container">
+    <div class="section-eyebrow" data-ko>시장 기회</div>
+    <div class="section-eyebrow" data-en>Opportunity</div>
+    <h2 data-ko>$21B 시장, 인증 모델은 비어있다.</h2>
+    <h2 data-en>$21B market — and the certification model is missing.</h2>
+    <p class="section-sub" data-ko>
+      기존 플랫폼(DOTmed, MedWOW, Bimedis)은 본질적으로 "분류 광고"입니다.
+      바이어는 사진과 셀러 평판만 보고 수만 달러를 송금합니다. 거대한 신뢰 공백이 존재합니다.
+    </p>
+    <p class="section-sub" data-en>
+      Existing platforms (DOTmed, MedWOW, Bimedis) are essentially classified ads.
+      Buyers wire tens of thousands of dollars based on photos and seller reputation alone.
+      A massive trust gap exists.
+    </p>
+
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-num">01</div>
+        <h3 class="card-title" data-ko>검증 부재</h3>
+        <h3 class="card-title" data-en>No Verification</h3>
+        <p class="card-body" data-ko>
+          현존 플랫폼 어디에도 표준화된 인증·등급제가 없습니다.
+          상태 보증 없이 거액의 거래가 이뤄집니다.
+        </p>
+        <p class="card-body" data-en>
+          No standardized authentication or grading system exists on any current platform.
+          Major transactions happen without condition guarantees.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-num">02</div>
+        <h3 class="card-title" data-ko>정보 비대칭</h3>
+        <h3 class="card-title" data-en>Information Asymmetry</h3>
+        <p class="card-body" data-ko>
+          공식 시세표가 없습니다. 셀러는 헐값에 팔고 바이어는 비싸게 사는
+          구조적 마찰이 큽니다.
+        </p>
+        <p class="card-body" data-en>
+          No official price index exists. Sellers underprice, buyers overpay —
+          structural friction is high.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-num">03</div>
+        <h3 class="card-title" data-ko>거래 후 분쟁</h3>
+        <h3 class="card-title" data-en>Post-Transaction Disputes</h3>
+        <p class="card-body" data-ko>
+          에스크로 결제, PL 보험, 면책 조항 구조가 부재합니다.
+          도착 후 결함 발견 시 회수·환불 분쟁이 빈번합니다.
+        </p>
+        <p class="card-body" data-en>
+          Escrow, product liability insurance, and disclaimer structures are absent.
+          Post-arrival defect disputes are frequent.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== SOLUTION =============== -->
+<section id="solution" style="background: var(--slate-50);">
+  <div class="container">
+    <div class="section-eyebrow" data-ko>솔루션</div>
+    <div class="section-eyebrow" data-en>Solution</div>
+    <h2 data-ko>우리가 파는 것은 "중고 의료기기"가 아닙니다.<br/>국경을 넘어가도 안심할 수 있는 "상태 보증서"입니다.</h2>
+    <h2 data-en>We don't sell used medical equipment.<br/>We sell the certificate that travels with it.</h2>
+    <p class="section-sub" data-ko>
+      MEDISTOCK은 4개의 운영 축으로 신뢰의 중개자가 됩니다.
+    </p>
+    <p class="section-sub" data-en>
+      MEDISTOCK is a trust intermediary built on four operational pillars.
+    </p>
+
+    <div class="grid-4">
+      <div class="pillar">
+        <div class="pillar-icon">✓</div>
+        <h3 class="pillar-title" data-ko>검증 매뉴얼화</h3>
+        <h3 class="pillar-title" data-en>Inspection Standards</h3>
+        <p class="pillar-body" data-ko>IEC 63077 + ISO 13485 기반의 카테고리별 검수 표준</p>
+        <p class="pillar-body" data-en>Category-specific inspection protocols based on IEC 63077 and ISO 13485</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">⚙</div>
+        <h3 class="pillar-title" data-ko>검수 인력 풀</h3>
+        <h3 class="pillar-title" data-en>Engineer Network</h3>
+        <p class="pillar-body" data-ko>부흥팀 의료기기 엔지니어 + 외부 프리랜서 전문가</p>
+        <p class="pillar-body" data-en>In-house medical engineers + curated external specialists</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">★</div>
+        <h3 class="pillar-title" data-ko>등급제 인증</h3>
+        <h3 class="pillar-title" data-en>Grading System</h3>
+        <p class="pillar-body" data-ko>S~D 5등급 + 디지털 검수 보고서 + 추적 ID</p>
+        <p class="pillar-body" data-en>S~D 5-tier grading + digital inspection reports + traceable ID</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">⛨</div>
+        <h3 class="pillar-title" data-ko>거래 안전망</h3>
+        <h3 class="pillar-title" data-en>Trade Safety Net</h3>
+        <p class="pillar-body" data-ko>에스크로 결제 · PL 보험 · 분쟁 조정 절차</p>
+        <p class="pillar-body" data-en>Escrow payment · PL insurance · dispute resolution</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== HOW IT WORKS =============== -->
+<section id="how">
+  <div class="container">
+    <div class="section-eyebrow" data-ko>작동 방식</div>
+    <div class="section-eyebrow" data-en>How it works</div>
+    <h2 data-ko>등록부터 정산까지, 부흥이 책임집니다.</h2>
+    <h2 data-en>From listing to settlement — handled end-to-end.</h2>
+
+    <div class="tabs" role="tablist">
+      <button id="tab-btn-seller" class="active" onclick="switchTab('seller')">
+        <span data-ko>셀러 (국내 공급자)</span>
+        <span data-en>Sellers (Korea)</span>
+      </button>
+      <button id="tab-btn-buyer" onclick="switchTab('buyer')">
+        <span data-ko>바이어 (해외)</span>
+        <span data-en>Buyers (Overseas)</span>
+      </button>
+    </div>
+
+    <div id="tab-seller" class="tab-panel active">
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">STEP 01</div>
+          <h4 class="step-title" data-ko>매각 의뢰</h4>
+          <h4 class="step-title" data-en>Submit</h4>
+          <p class="step-body" data-ko>장비 정보·사진을 폼으로 제출. 24시간 내 1차 회신.</p>
+          <p class="step-body" data-en>Submit equipment info and photos. Initial reply within 24 hours.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">STEP 02</div>
+          <h4 class="step-title" data-ko>검수·등급</h4>
+          <h4 class="step-title" data-en>Inspect</h4>
+          <p class="step-body" data-ko>방문 또는 원격 검수. S~D 등급 부여 + 디지털 보고서 생성.</p>
+          <p class="step-body" data-en>On-site or remote inspection. S–D grade + digital report.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">STEP 03</div>
+          <h4 class="step-title" data-ko>매물 등재·매칭</h4>
+          <h4 class="step-title" data-en>List & Match</h4>
+          <p class="step-body" data-ko>글로벌 바이어 풀에 매칭. 시세 인덱스 기반 가격 제시.</p>
+          <p class="step-body" data-en>Matched to global buyer pool. Pricing guided by our index.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">STEP 04</div>
+          <h4 class="step-title" data-ko>거래·정산</h4>
+          <h4 class="step-title" data-en>Settle</h4>
+          <p class="step-body" data-ko>에스크로 결제 확인 후 정산. 운송·통관까지 일원화.</p>
+          <p class="step-body" data-en>Settlement on escrow confirmation. Logistics handled.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-buyer" class="tab-panel">
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">STEP 01</div>
+          <h4 class="step-title" data-ko>사전 등록</h4>
+          <h4 class="step-title" data-en>Register</h4>
+          <p class="step-body" data-ko>관심 카테고리·예산·시점 등록. 신규 매물 알림.</p>
+          <p class="step-body" data-en>Register interests, budget, timing. Get listing alerts.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">STEP 02</div>
+          <h4 class="step-title" data-ko>매물·검수 보고서 확인</h4>
+          <h4 class="step-title" data-en>Review</h4>
+          <p class="step-body" data-ko>디지털 검수 보고서, 사진·영상, 사용시간 로그 열람.</p>
+          <p class="step-body" data-en>Review digital reports, photos, usage logs, calibration history.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">STEP 03</div>
+          <h4 class="step-title" data-ko>에스크로 결제</h4>
+          <h4 class="step-title" data-en>Escrow</h4>
+          <p class="step-body" data-ko>제3자 에스크로 결제. 도착·검수 완료 시 정산.</p>
+          <p class="step-body" data-en>Third-party escrow. Released on arrival + inspection confirmation.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">STEP 04</div>
+          <h4 class="step-title" data-ko>운송·설치·A/S</h4>
+          <h4 class="step-title" data-en>Deliver & Support</h4>
+          <p class="step-body" data-ko>분해·해상운송·통관·현지 설치까지 패키지 제공.</p>
+          <p class="step-body" data-en>Disassembly, shipping, customs, on-site install — all bundled.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== PHASE 1 SPOTLIGHT =============== -->
+<section style="background: var(--slate-50);">
+  <div class="container">
+    <div class="spotlight">
+      <div class="spotlight-grid">
+        <div>
+          <div class="section-eyebrow" data-ko>Phase 1 · 0–12개월</div>
+          <div class="section-eyebrow" data-en>Phase 1 · 0–12 months</div>
+          <h2 data-ko>치과 카테고리부터 시작합니다.</h2>
+          <h2 data-en>Starting with dental equipment.</h2>
+          <p data-ko style="color: rgba(255,255,255,0.78); font-size: 16px;">
+            유닛체어 · 임플란트 키트 · 파노라마 · 스케일러.
+            한국 글로벌 점유율 12%의 카테고리이며, 검수 표준화와 해상운송 부담이
+            영상장비 대비 1/10 수준입니다. 빠르게 첫 거래로 갈 수 있는 길입니다.
+          </p>
+          <p data-en style="color: rgba(255,255,255,0.78); font-size: 16px;">
+            Dental chairs, implant kits, panoramic systems, scalers.
+            Korea holds ~12% of the global dental implant market, and dental
+            equipment is 1/10 the logistics complexity of imaging machines.
+            The fastest path to a verified first transaction.
+          </p>
+        </div>
+        <ul class="spotlight-list">
+          <li>
+            <span class="check">✓</span>
+            <div class="spotlight-li-text">
+              <strong data-ko>한국 글로벌 12% 점유</strong>
+              <strong data-en>~12% Global Share (KR)</strong>
+              <span data-ko>OSSTEM, DENTIUM 등 신흥시장 인지도</span>
+              <span data-en>Strong emerging-market brand recognition</span>
+            </div>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <div class="spotlight-li-text">
+              <strong data-ko>검수 표준화 용이</strong>
+              <strong data-en>Easy to standardize inspection</strong>
+              <span data-ko>구성 단순, 사용시간·소모품 판독 명확</span>
+              <span data-en>Simpler configurations, clear usage logs</span>
+            </div>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <div class="spotlight-li-text">
+              <strong data-ko>운송 난이도 낮음</strong>
+              <strong data-en>Low logistics complexity</strong>
+              <span data-ko>분해·해상운송 부담이 영상장비 대비 1/10</span>
+              <span data-en>1/10 the disassembly/shipping load of imaging</span>
+            </div>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <div class="spotlight-li-text">
+              <strong data-ko>신흥시장 수요 폭증</strong>
+              <strong data-en>Surging demand in emerging markets</strong>
+              <span data-ko>동남아·중동 사설치과 체인 확장</span>
+              <span data-en>Expanding private dental chains in SE Asia, Middle East</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== STANDARDS =============== -->
+<section>
+  <div class="container">
+    <div class="section-eyebrow" data-ko>검증 표준</div>
+    <div class="section-eyebrow" data-en>Standards</div>
+    <h2 data-ko>국제 표준 + 부흥의 의료기기 엔지니어 경험.</h2>
+    <h2 data-en>International standards meet hands-on engineering.</h2>
+    <p class="section-sub" data-ko>
+      모든 매물은 IEC 63077:2019, ISO 13485:2016 기반의 검수 프로세스를 거치며,
+      외관·기능, 사용시간 로그, 부품 잔존가, 교정 이력, S/W 버전까지 5개 영역에서 평가됩니다.
+    </p>
+    <p class="section-sub" data-en>
+      Every listing goes through a structured inspection under IEC 63077:2019 and ISO 13485:2016 —
+      evaluating exterior, usage logs, remaining part life, calibration history, and software version.
+    </p>
+
+    <div class="standards">
+      <div style="margin-bottom: 12px;">
+        <strong style="color: var(--navy-900); font-size: 14px;" data-ko>5등급 표준화 — 결과물</strong>
+        <strong style="color: var(--navy-900); font-size: 14px;" data-en>5-Grade Standard — Output</strong>
+      </div>
+      <div class="grades">
+        <div class="grade S">
+          <div class="grade-letter">S</div>
+          <div class="grade-label" data-ko>거의 신품</div>
+          <div class="grade-label" data-en>Like new</div>
+        </div>
+        <div class="grade A">
+          <div class="grade-letter">A</div>
+          <div class="grade-label" data-ko>우수</div>
+          <div class="grade-label" data-en>Excellent</div>
+        </div>
+        <div class="grade B">
+          <div class="grade-letter">B</div>
+          <div class="grade-label" data-ko>양호</div>
+          <div class="grade-label" data-en>Good</div>
+        </div>
+        <div class="grade C">
+          <div class="grade-letter">C</div>
+          <div class="grade-label" data-ko>보통 (리퍼비시 권장)</div>
+          <div class="grade-label" data-en>Fair (refurb recommended)</div>
+        </div>
+        <div class="grade D">
+          <div class="grade-letter">D</div>
+          <div class="grade-label" data-ko>부품·교체 용도</div>
+          <div class="grade-label" data-en>Parts/replacement</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== SELLER FORM =============== -->
+<section id="seller" class="form-section">
+  <div class="container">
+    <div class="section-eyebrow" data-ko>셀러용 · 매도 의뢰</div>
+    <div class="section-eyebrow" data-en>For Sellers · Submit Equipment</div>
+    <h2 data-ko>의료기기 매각, 가장 안전한 채널로.</h2>
+    <h2 data-en>Sell your medical equipment safely.</h2>
+    <p class="section-sub" data-ko>
+      병원·의원 폐업, 장비 교체, 사용하지 않는 장비의 매각을 의뢰하시면
+      24시간 내 부흥팀이 회신드립니다. 사전 검수·시세 안내·매물 등재까지 무료 상담입니다.
+    </p>
+    <p class="section-sub" data-en>
+      If you are a hospital, clinic, or owner with equipment to sell — clinic closure, replacement, or unused inventory —
+      submit below. Our team will respond within 24 hours. Initial consultation, inspection guidance, and pricing index are all free.
+    </p>
+
+    <div class="form-wrap">
+      <div class="form-note" data-ko>
+        본 폼 제출 시 입력 정보는 부흥팀 운영 이메일로 전송됩니다.
+        Discovery Phase 기간 동안 외부 공개 없이 내부 검토용으로만 사용됩니다.
+      </div>
+      <div class="form-note" data-en>
+        Submissions are sent to the 부흥 (Boohung) operations email. During the Discovery Phase,
+        information is used only for internal review and is never disclosed externally.
+      </div>
+
+      <form id="seller-form" onsubmit="return submitForm(event, 'seller')">
+        <div class="form-row">
+          <div class="field">
+            <label data-ko>병원·회사명 <span class="req">*</span></label>
+            <label data-en>Hospital / Company <span class="req">*</span></label>
+            <input type="text" name="org" required />
+          </div>
+          <div class="field">
+            <label data-ko>담당자 성함 <span class="req">*</span></label>
+            <label data-en>Contact Name <span class="req">*</span></label>
+            <input type="text" name="name" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label data-ko>연락처 (휴대전화) <span class="req">*</span></label>
+            <label data-en>Phone <span class="req">*</span></label>
+            <input type="tel" name="phone" required />
+          </div>
+          <div class="field">
+            <label data-ko>이메일 <span class="req">*</span></label>
+            <label data-en>Email <span class="req">*</span></label>
+            <input type="email" name="email" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label data-ko>장비 카테고리 <span class="req">*</span></label>
+            <label data-en>Equipment Category <span class="req">*</span></label>
+            <select name="category" required>
+              <option value="" data-ko>선택해 주세요</option>
+              <option value="" data-en>Please select</option>
+              <option value="dental" data-ko>치과 장비 (Phase 1)</option>
+              <option value="dental" data-en>Dental (Phase 1)</option>
+              <option value="ultrasound" data-ko>초음파 진단기</option>
+              <option value="ultrasound" data-en>Ultrasound</option>
+              <option value="ophthalmology" data-ko>안과 장비</option>
+              <option value="ophthalmology" data-en>Ophthalmology</option>
+              <option value="endoscope" data-ko>내시경</option>
+              <option value="endoscope" data-en>Endoscope</option>
+              <option value="imaging" data-ko>영상장비 (CT/MRI/X-ray)</option>
+              <option value="imaging" data-en>Imaging (CT/MRI/X-ray)</option>
+              <option value="other" data-ko>기타</option>
+              <option value="other" data-en>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label data-ko>매각 희망 시점</label>
+            <label data-en>Preferred Timing</label>
+            <select name="timing">
+              <option value="1mo" data-ko>1개월 이내</option>
+              <option value="1mo" data-en>Within 1 month</option>
+              <option value="3mo" data-ko>3개월 이내</option>
+              <option value="3mo" data-en>Within 3 months</option>
+              <option value="6mo" data-ko>6개월 이내</option>
+              <option value="6mo" data-en>Within 6 months</option>
+              <option value="flex" data-ko>유연 / 시세에 따라</option>
+              <option value="flex" data-en>Flexible / depending on offer</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label data-ko>장비 정보 (모델명·연식·사용시간·구입가 등)</label>
+          <label data-en>Equipment details (model, year, usage hours, purchase price, etc.)</label>
+          <textarea name="details" rows="4" placeholder="예: GE Logiq P5, 2018년 구입, 사용시간 약 4,200시간..."></textarea>
+          <div class="field-hint" data-ko>사진은 회신 후 별도 메일로 전송 부탁드립니다.</div>
+          <div class="field-hint" data-en>Please send photos via reply email after submission.</div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px;">
+          <span data-ko>매도 의뢰 보내기 →</span>
+          <span data-en>Submit Equipment →</span>
+        </button>
+        <div class="form-success" id="seller-success">
+          <span data-ko>✓ 이메일 클라이언트가 열렸습니다. 전송을 마저 진행해 주세요. 24시간 내 부흥팀이 회신드립니다.</span>
+          <span data-en>✓ Your email client is now open. Please complete sending. We'll reply within 24 hours.</span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- =============== BUYER FORM =============== -->
+<section id="buyer">
+  <div class="container">
+    <div class="section-eyebrow" data-ko>바이어용 · 사전등록</div>
+    <div class="section-eyebrow" data-en>For Buyers · Pre-register</div>
+    <h2 data-ko>해외 바이어를 위한 사전등록.</h2>
+    <h2 data-en>Pre-register your buying interests.</h2>
+    <p class="section-sub" data-ko>
+      병원·딜러·디스트리뷰터로서 검증된 한국산 중고 의료기기에 관심이 있으시면 등록해 주세요.
+      Phase 1 매물(치과 카테고리)이 준비되는 대로 우선 안내해 드립니다.
+    </p>
+    <p class="section-sub" data-en>
+      Hospitals, dealers, and distributors interested in verified Korean used medical equipment —
+      register your interests below. You'll be the first to know when Phase 1 inventory (dental) becomes available.
+    </p>
+
+    <div class="form-wrap">
+      <div class="form-note" data-ko>
+        부흥팀이 1주일 이내 영문으로 회신드리며, Discovery Phase 진행 중에는 우선 협의 대상이 됩니다.
+      </div>
+      <div class="form-note" data-en>
+        Our team replies in English within 1 week. Buyers registered during Discovery Phase receive priority engagement.
+      </div>
+
+      <form id="buyer-form" onsubmit="return submitForm(event, 'buyer')">
+        <div class="form-row">
+          <div class="field">
+            <label data-ko>조직명 <span class="req">*</span></label>
+            <label data-en>Organization <span class="req">*</span></label>
+            <input type="text" name="org" required />
+          </div>
+          <div class="field">
+            <label data-ko>담당자 성함 <span class="req">*</span></label>
+            <label data-en>Contact Name <span class="req">*</span></label>
+            <input type="text" name="name" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label data-ko>이메일 <span class="req">*</span></label>
+            <label data-en>Email <span class="req">*</span></label>
+            <input type="email" name="email" required />
+          </div>
+          <div class="field">
+            <label data-ko>국가 <span class="req">*</span></label>
+            <label data-en>Country <span class="req">*</span></label>
+            <input type="text" name="country" placeholder="예: Vietnam, UAE, Indonesia..." required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label data-ko>관심 카테고리 <span class="req">*</span></label>
+            <label data-en>Category of Interest <span class="req">*</span></label>
+            <select name="category" required>
+              <option value="" data-ko>선택해 주세요</option>
+              <option value="" data-en>Please select</option>
+              <option value="dental" data-ko>치과 장비 (Phase 1)</option>
+              <option value="dental" data-en>Dental (Phase 1)</option>
+              <option value="ultrasound" data-ko>초음파</option>
+              <option value="ultrasound" data-en>Ultrasound</option>
+              <option value="ophthalmology" data-ko>안과</option>
+              <option value="ophthalmology" data-en>Ophthalmology</option>
+              <option value="endoscope" data-ko>내시경</option>
+              <option value="endoscope" data-en>Endoscope</option>
+              <option value="imaging" data-ko>영상장비</option>
+              <option value="imaging" data-en>Imaging</option>
+              <option value="multi" data-ko>여러 카테고리</option>
+              <option value="multi" data-en>Multiple categories</option>
+            </select>
+          </div>
+          <div class="field">
+            <label data-ko>예산 범위 (단건 거래 기준)</label>
+            <label data-en>Budget Range (per transaction)</label>
+            <select name="budget">
+              <option value="<5k" data-ko>$5,000 이하</option>
+              <option value="<5k" data-en>Under $5,000</option>
+              <option value="5-20k">$5,000–$20,000</option>
+              <option value="20-50k">$20,000–$50,000</option>
+              <option value="50-200k">$50,000–$200,000</option>
+              <option value=">200k" data-ko>$200,000 이상</option>
+              <option value=">200k" data-en>$200,000+</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label data-ko>구매 목적 / 비고</label>
+          <label data-en>Buying Purpose / Notes</label>
+          <textarea name="notes" rows="4" placeholder="예: 자사 운영 치과 체인 3개 신규 개원 / 디스트리뷰터로 재판매..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-teal" style="width: 100%; padding: 16px;">
+          <span data-ko>사전등록 보내기 →</span>
+          <span data-en>Pre-register →</span>
+        </button>
+        <div class="form-success" id="buyer-success">
+          <span data-ko>✓ 이메일 클라이언트가 열렸습니다. 전송을 마저 진행해 주세요.</span>
+          <span data-en>✓ Your email client is now open. Please complete sending.</span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- =============== ABOUT =============== -->
+<section style="background: var(--slate-50);">
+  <div class="container">
+    <div class="about">
+      <div>
+        <div class="section-eyebrow" data-ko>운영 주체</div>
+        <div class="section-eyebrow" data-en>Who runs MEDISTOCK</div>
+        <h2 data-ko>부흥팀 — 이 사업에 정확히 맞는 자산.</h2>
+        <h2 data-en>The Boohung Team — built for this market.</h2>
+        <p data-ko style="font-size: 16px; color: var(--slate-600);">
+          이 사업의 4대 운영 축(공급 / 검증 / 플랫폼 / 자본) 중 부흥팀은 3개를 자체 보유합니다.
+          글로벌 바이어 네트워크 파트너와 결합 시 즉시 가동 가능한 사업 구조입니다.
+        </p>
+        <p data-en style="font-size: 16px; color: var(--slate-600);">
+          MEDISTOCK requires four operational pillars: supply, verification, platform, and capital.
+          The Boohung team brings three of them in-house. With a global buyer-network partner, the structure becomes immediately operational.
+        </p>
+      </div>
+      <div class="assets">
+        <div class="asset">
+          <div class="asset-title" data-ko>플랫폼 · IT 개발</div>
+          <div class="asset-title" data-en>Platform · IT Development</div>
+          <p class="asset-body" data-ko>마켓플레이스, 인증 시스템, 디지털 검수 보고서 직접 구축.</p>
+          <p class="asset-body" data-en>In-house build of marketplace, authentication, and digital reports.</p>
+        </div>
+        <div class="asset">
+          <div class="asset-title" data-ko>의료기기 엔지니어</div>
+          <div class="asset-title" data-en>Medical Engineering</div>
+          <p class="asset-body" data-ko>검수 회로 구성, 등급 매뉴얼, S/W·교정 이력 판독.</p>
+          <p class="asset-body" data-en>Inspection design, grading manuals, S/W & calibration audits.</p>
+        </div>
+        <div class="asset">
+          <div class="asset-title" data-ko>병원·의사·업계 인맥</div>
+          <div class="asset-title" data-en>Hospital · Doctor Network</div>
+          <p class="asset-body" data-ko>국내 공급(매각 의사 있는 병원·업자) 파이프라인.</p>
+          <p class="asset-body" data-en>Direct pipeline to Korean supply (hospitals, clinics, dealers).</p>
+        </div>
+        <div class="asset">
+          <div class="asset-title" data-ko>초기 자본 일부 자체 조달</div>
+          <div class="asset-title" data-en>Self-funded Seed</div>
+          <p class="asset-body" data-ko>시드 단계 운영자금 자기 조달 가능.</p>
+          <p class="asset-body" data-en>Seed-stage operating capital available in-house.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== FOOTER =============== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="color: white; margin-bottom: 12px;">
+          <span class="logo-mark">M</span>
+          MEDISTOCK
+        </div>
+        <p data-ko style="margin: 0 0 8px; max-width: 420px;">
+          인증 기반 글로벌 중고 의료기기 거래 플랫폼.<br/>
+          한국의 의료기기를, 세계 어디서든 안심하고.
+        </p>
+        <p data-en style="margin: 0 0 8px; max-width: 420px;">
+          Authenticated marketplace for used medical equipment.<br/>
+          Korean equipment, trusted globally.
+        </p>
+        <p style="font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 16px;" data-ko>
+          ※ MEDISTOCK은 가칭이며, 본격 사업화 시 변경될 수 있습니다.
+        </p>
+        <p style="font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 16px;" data-en>
+          * MEDISTOCK is a tentative name and may change upon formal launch.
+        </p>
+      </div>
+      <div>
+        <h4 data-ko>둘러보기</h4>
+        <h4 data-en>Explore</h4>
+        <a href="#opportunity" data-ko>시장 기회</a><a href="#opportunity" data-en>Opportunity</a>
+        <a href="#solution" data-ko>솔루션</a><a href="#solution" data-en>Solution</a>
+        <a href="#how" data-ko>작동 방식</a><a href="#how" data-en>How it works</a>
+      </div>
+      <div>
+        <h4 data-ko>문의</h4>
+        <h4 data-en>Contact</h4>
+        <a href="mailto:kubo63078@gmail.com">kubo63078@gmail.com</a>
+        <a href="#seller" data-ko>매도 의뢰</a><a href="#seller" data-en>Sell</a>
+        <a href="#buyer" data-ko>바이어 등록</a><a href="#buyer" data-en>Buyer Pre-register</a>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <div>© 2026 부흥팀 · MEDISTOCK (가칭)</div>
+      <div data-ko>CONFIDENTIAL · Discovery Phase 진행 중</div>
+      <div data-en>CONFIDENTIAL · Discovery Phase in progress</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ---- Language toggle ----
+  function setLang(lang) {
+    document.body.classList.remove('lang-ko', 'lang-en');
+    document.body.classList.add('lang-' + lang);
+    document.documentElement.setAttribute('lang', lang);
+    document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    try { localStorage.setItem('medistock-lang', lang); } catch (e) {}
+  }
+  try {
+    var saved = localStorage.getItem('medistock-lang');
+    if (saved === 'en' || saved === 'ko') setLang(saved);
+  } catch (e) {}
+
+  // ---- Tabs (How it works) ----
+  function switchTab(which) {
+    document.getElementById('tab-seller').classList.toggle('active', which === 'seller');
+    document.getElementById('tab-buyer').classList.toggle('active', which === 'buyer');
+    document.getElementById('tab-btn-seller').classList.toggle('active', which === 'seller');
+    document.getElementById('tab-btn-buyer').classList.toggle('active', which === 'buyer');
+  }
+
+  // ---- Form submit handler (mailto fallback) ----
+  // NOTE: To switch to a real form backend later (Formspree, Getform, etc.),
+  // replace this function with a fetch() POST to your endpoint URL.
+  function submitForm(ev, type) {
+    ev.preventDefault();
+    var form = ev.target;
+    var data = new FormData(form);
+    var lines = [];
+    var label = type === 'seller'
+      ? '[MEDISTOCK] 매도 의뢰 - Seller Submission'
+      : '[MEDISTOCK] 바이어 사전등록 - Buyer Pre-registration';
+
+    data.forEach(function (value, key) {
+      lines.push(key + ': ' + value);
+    });
+    var body = lines.join('\n') + '\n\n— Submitted via MEDISTOCK landing v1';
+
+    var mailto = 'mailto:kubo63078@gmail.com'
+      + '?subject=' + encodeURIComponent(label)
+      + '&body=' + encodeURIComponent(body);
+
+    window.location.href = mailto;
+
+    document.getElementById(type + '-success').classList.add('show');
+    return false;
+  }
+</script>
+
+</body>
+</html>

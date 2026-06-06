@@ -1,0 +1,2301 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MEDISTOCK — 인증 기반 글로벌 중고 의료기기 거래 플랫폼 (가칭)</title>
+<meta name="description" content="MEDISTOCK은 IEC 63077·ISO 13485 표준 기반 인증·등급제로 한국 의료기기 공급자와 글로벌 바이어를 연결합니다. 6개 카테고리 동시 모집 중. 2026 Q3 정식 운영." />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="MEDISTOCK — 인증 기반 글로벌 중고 의료기기 거래 플랫폼" />
+<meta property="og:description" content="IEC 63077·ISO 13485 표준 기반 인증·등급제. 6개 카테고리 셀러·바이어·파트너 모집 중. 2026 Q3 정식 운영." />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:locale:alternate" content="en_US" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#0a1f3d" />
+
+<!-- Favicon (inline SVG) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%231a3a6d'/%3E%3Cstop offset='1' stop-color='%2314b8a6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Cpath d='M16 46V18l8 18 8-18v28' fill='none' stroke='white' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M40 46V18m0 14h8' fill='none' stroke='white' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E" />
+
+<style>
+  :root {
+    --navy-900: #0a1f3d;
+    --navy-800: #102a52;
+    --navy-700: #1a3a6d;
+    --navy-500: #2c5491;
+    --teal-500: #14b8a6;
+    --teal-400: #2dd4bf;
+    --teal-600: #0d9488;
+    --teal-700: #0f766e;
+    --gold-500: #d4a843;
+    --gold-300: #f0d28a;
+    --slate-50:  #f6f8fb;
+    --slate-100: #eef2f7;
+    --slate-200: #dbe2ec;
+    --slate-300: #c5cfdc;
+    --slate-400: #8a98ad;
+    --slate-500: #687588;
+    --slate-600: #4a5568;
+    --slate-800: #1f2937;
+    --slate-900: #111827;
+    --white: #ffffff;
+    --green-500: #10b981;
+    --red-500: #ef4444;
+    --shadow-sm: 0 1px 2px rgba(10, 31, 61, 0.06);
+    --shadow-md: 0 8px 24px rgba(10, 31, 61, 0.08);
+    --shadow-lg: 0 20px 50px rgba(10, 31, 61, 0.14);
+    --shadow-xl: 0 30px 80px rgba(10, 31, 61, 0.22);
+    --radius: 12px;
+    --radius-lg: 18px;
+    --radius-xl: 24px;
+    --max-w: 1180px;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Segoe UI",
+      Roboto, "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", sans-serif;
+    color: var(--slate-800);
+    background: var(--white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection { background: rgba(20,184,166,0.25); }
+
+  /* Language toggle */
+  .lang-en .lang-ko { display: none; }
+  .lang-ko .lang-en { display: none; }
+  .lang-en [data-ko], .lang-ko [data-en] { display: none; }
+  .lang-en [data-en], .lang-ko [data-ko] { display: revert; }
+
+  /* Layout */
+  .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+  section { padding: 104px 0; }
+  section.tight { padding: 64px 0; }
+
+  /* --------- SCROLL FADE IN --------- */
+  .reveal {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* --------- DOT GRID PATTERN for dark sections --------- */
+  .pattern-dots {
+    background-image:
+      radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px),
+      radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 32px 32px, 32px 32px;
+    background-position: 0 0, 16px 16px;
+  }
+
+  /* --------- NAV --------- */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid var(--slate-100);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 24px; max-width: var(--max-w); margin: 0 auto;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 12px;
+    font-weight: 800; font-size: 19px; letter-spacing: -0.02em;
+    color: var(--navy-900); text-decoration: none;
+  }
+  .logo-mark {
+    width: 34px; height: 34px;
+    background: linear-gradient(135deg, var(--navy-700), var(--teal-500));
+    border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 12px rgba(20,184,166,0.25);
+  }
+  .logo-mark svg { width: 18px; height: 18px; }
+  .badge-tentative {
+    font-size: 10px; font-weight: 600; padding: 2px 8px;
+    background: var(--slate-100); color: var(--slate-500);
+    border-radius: 999px; margin-left: 4px; letter-spacing: 0.03em;
+  }
+  .nav-links { display: flex; gap: 24px; align-items: center; }
+  .nav-links a {
+    color: var(--slate-600); text-decoration: none; font-size: 14px; font-weight: 500;
+    transition: color 0.15s ease;
+  }
+  .nav-links a:hover { color: var(--navy-700); }
+  .lang-toggle {
+    display: inline-flex; background: var(--slate-100); border-radius: 999px; padding: 2px;
+  }
+  .lang-toggle button {
+    border: 0; background: transparent; padding: 6px 14px;
+    font-size: 12px; font-weight: 600; color: var(--slate-500);
+    border-radius: 999px; cursor: pointer; letter-spacing: 0.04em;
+    transition: all 0.15s ease;
+  }
+  .lang-toggle button.active {
+    background: var(--navy-900); color: var(--white);
+  }
+  @media (max-width: 900px) {
+    .nav-links a:not(.cta-mini) { display: none; }
+  }
+
+  /* --------- LIVE PILL --------- */
+  .live-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(16,185,129,0.08); color: var(--teal-700);
+    padding: 7px 14px; border-radius: 999px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.02em;
+    margin-bottom: 22px;
+    border: 1px solid rgba(16,185,129,0.22);
+  }
+  .live-dot {
+    width: 8px; height: 8px; background: var(--green-500); border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+    position: relative;
+  }
+  .live-dot::after {
+    content: ''; position: absolute; inset: -4px; border-radius: 50%;
+    border: 2px solid var(--green-500); animation: ping 2s ease-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.55; }
+  }
+  @keyframes ping {
+    0% { transform: scale(0.6); opacity: 0.6; }
+    100% { transform: scale(1.6); opacity: 0; }
+  }
+
+  /* --------- HERO --------- */
+  .hero {
+    position: relative;
+    padding: 84px 0 72px;
+    background:
+      radial-gradient(900px 460px at 80% -20%, rgba(20,184,166,0.20), transparent 60%),
+      radial-gradient(720px 380px at 10% 110%, rgba(44,84,145,0.16), transparent 60%),
+      linear-gradient(180deg, #f8fafd 0%, #ffffff 100%);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image: radial-gradient(rgba(10,31,61,0.04) 1px, transparent 1px);
+    background-size: 24px 24px;
+    mask-image: linear-gradient(180deg, white 0%, transparent 70%);
+    -webkit-mask-image: linear-gradient(180deg, white 0%, transparent 70%);
+  }
+  .hero-grid {
+    position: relative;
+    display: grid; grid-template-columns: 1.15fr 1fr; gap: 56px; align-items: center;
+  }
+  @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 36px; } }
+  h1.hero-title {
+    font-size: clamp(38px, 5.2vw, 58px); line-height: 1.08; letter-spacing: -0.028em;
+    color: var(--navy-900); font-weight: 800; margin: 0 0 22px;
+  }
+  .hero-sub {
+    font-size: 17px; color: var(--slate-600); margin: 0 0 32px; max-width: 580px;
+    line-height: 1.65;
+  }
+  .hero-ctas { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 14px 22px; font-size: 14px; font-weight: 600;
+    border-radius: 10px; text-decoration: none; cursor: pointer;
+    border: 1px solid transparent; transition: all 0.18s ease;
+    font-family: inherit;
+  }
+  .btn-primary { background: var(--navy-900); color: var(--white); }
+  .btn-primary:hover { background: var(--navy-700); transform: translateY(-1px); box-shadow: 0 8px 22px rgba(10,31,61,0.18); }
+  .btn-secondary { background: var(--white); color: var(--navy-900); border-color: var(--slate-200); }
+  .btn-secondary:hover { border-color: var(--navy-500); transform: translateY(-1px); }
+  .btn-teal { background: var(--teal-500); color: var(--white); }
+  .btn-teal:hover { background: var(--teal-600); transform: translateY(-1px); box-shadow: 0 8px 22px rgba(20,184,166,0.32); }
+  .btn-outline-teal { background: white; color: var(--teal-700); border-color: var(--teal-500); }
+  .btn-outline-teal:hover { background: var(--teal-500); color: white; transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--slate-600); }
+  .btn-ghost:hover { background: var(--slate-100); }
+
+  /* --------- HERO CARD (operational glimpse) --------- */
+  .hero-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    border: 1px solid var(--slate-100);
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--navy-700), var(--teal-500), var(--gold-500));
+  }
+  .stat-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 22px; }
+  .stat {
+    background: var(--slate-50); border-radius: var(--radius); padding: 16px;
+    border: 1px solid var(--slate-100);
+  }
+  .stat-num { font-size: 24px; font-weight: 800; color: var(--navy-900); letter-spacing: -0.02em; line-height: 1.1; }
+  .stat-label { font-size: 11px; color: var(--slate-500); margin-top: 6px; line-height: 1.4; }
+  .trust-strip { display: flex; gap: 8px; flex-wrap: wrap; }
+  .trust-chip {
+    font-size: 11px; font-weight: 600; padding: 6px 11px;
+    background: var(--white); border: 1px solid var(--slate-200);
+    border-radius: 999px; color: var(--slate-600); letter-spacing: 0.02em;
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .trust-chip svg { width: 11px; height: 11px; color: var(--teal-500); }
+
+  /* --------- HERO LISTINGS PREVIEW --------- */
+  .hero-listings { padding: 22px 22px 18px; }
+  .listings-head {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 14px; margin-bottom: 6px;
+    border-bottom: 1px solid var(--slate-100);
+    flex-wrap: wrap; gap: 8px;
+  }
+  .listings-title {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--navy-900); display: flex; align-items: center; gap: 8px;
+  }
+  .listings-meta {
+    font-size: 10.5px; color: var(--slate-400); font-style: italic;
+  }
+  .listing-item {
+    display: grid; grid-template-columns: 64px 1fr auto auto;
+    gap: 14px; align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--slate-100);
+    transition: background 0.15s ease;
+  }
+  .listing-item:last-of-type { border-bottom: 0; }
+  .listing-icon {
+    width: 64px; height: 64px;
+    background: linear-gradient(135deg, var(--slate-50), #fff);
+    border: 1px solid var(--slate-100);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+  }
+  /* Real photo when image exists */
+  .listing-icon img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  /* SVG fallback shown only if image fails to load */
+  .listing-icon .icon-fallback {
+    display: none;
+    width: 100%; height: 100%;
+    align-items: center; justify-content: center;
+  }
+  .listing-icon .icon-fallback svg { width: 30px; height: 30px; color: var(--navy-700); }
+  .listing-info { min-width: 0; }
+  .listing-name {
+    font-size: 13px; font-weight: 700; color: var(--navy-900); letter-spacing: -0.01em;
+    line-height: 1.3;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .listing-sub {
+    font-size: 11px; color: var(--slate-500); margin-top: 2px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .listing-grade {
+    width: 28px; height: 28px; border-radius: 7px;
+    font-size: 14px; font-weight: 800; color: white;
+    display: flex; align-items: center; justify-content: center;
+    letter-spacing: -0.02em;
+    box-shadow: 0 2px 6px rgba(10,31,61,0.15);
+  }
+  .listing-grade.grade-S { background: linear-gradient(135deg, var(--gold-300), var(--gold-500)); color: #5a4108; }
+  .listing-grade.grade-A { background: linear-gradient(135deg, var(--teal-500), var(--teal-700)); }
+  .listing-grade.grade-B { background: linear-gradient(135deg, var(--navy-500), var(--navy-700)); }
+  .listing-price {
+    font-size: 12.5px; font-weight: 700; color: var(--navy-900);
+    font-family: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+    white-space: nowrap;
+    letter-spacing: -0.02em;
+  }
+  .listings-trust {
+    padding-top: 14px; margin-top: 6px;
+    border-top: 1px solid var(--slate-100);
+    justify-content: center;
+  }
+  @media (max-width: 480px) {
+    .hero-listings { padding: 18px; }
+    .listing-item { grid-template-columns: 52px 1fr auto; gap: 12px; }
+    .listing-icon { width: 52px; height: 52px; }
+    .listing-icon .icon-fallback svg { width: 24px; height: 24px; }
+    .listing-price { display: none; }
+    .listing-name { font-size: 12.5px; }
+  }
+
+  /* --------- SECTION HEADERS --------- */
+  .section-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--teal-600); margin-bottom: 14px;
+  }
+  .section-eyebrow::before {
+    content: ''; width: 24px; height: 1px; background: var(--teal-500);
+  }
+  h2 {
+    font-size: clamp(28px, 3.4vw, 38px);
+    line-height: 1.18; letter-spacing: -0.022em;
+    color: var(--navy-900); font-weight: 800; margin: 0 0 18px;
+  }
+  .section-sub {
+    font-size: 17px; color: var(--slate-600); max-width: 760px; margin: 0 0 48px;
+    line-height: 1.65;
+  }
+
+  /* --------- OPERATIONAL STATUS STRIP (dark) --------- */
+  .status-section {
+    background: linear-gradient(180deg, var(--navy-900) 0%, var(--navy-800) 100%);
+    color: white;
+    padding: 64px 0;
+    position: relative;
+  }
+  .status-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 32px; flex-wrap: wrap; gap: 16px;
+    position: relative;
+  }
+  .status-title { font-size: 24px; font-weight: 700; color: white; margin: 0; letter-spacing: -0.015em; }
+  .status-meta {
+    font-size: 12px; color: rgba(255,255,255,0.55); display: flex; gap: 14px; align-items: center;
+  }
+  .status-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px;
+    position: relative;
+  }
+  @media (max-width: 1000px) { .status-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .status-grid { grid-template-columns: 1fr; } }
+  .status-item {
+    background: rgba(255,255,255,0.045);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px; padding: 20px;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+  .status-item:hover {
+    border-color: rgba(20,184,166,0.5);
+    background: rgba(255,255,255,0.07);
+    transform: translateY(-2px);
+  }
+  .status-icon {
+    width: 36px; height: 36px; border-radius: 9px;
+    background: rgba(20,184,166,0.18);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 14px;
+  }
+  .status-icon svg { width: 18px; height: 18px; color: var(--teal-400); }
+  .status-tag {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+    padding: 3px 8px; border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  .status-tag.done { background: rgba(20,184,166,0.18); color: var(--teal-400); }
+  .status-tag.live { background: rgba(16,185,129,0.18); color: var(--green-500); }
+  .status-tag.next { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.6); }
+  .status-item h4 {
+    font-size: 14px; font-weight: 700; color: white; margin: 0 0 6px; line-height: 1.3;
+  }
+  .status-item p {
+    font-size: 12.5px; color: rgba(255,255,255,0.65); margin: 0; line-height: 1.55;
+  }
+
+  /* --------- CARDS --------- */
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  @media (max-width: 900px) {
+    .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+  .card {
+    background: var(--white); border: 1px solid var(--slate-100);
+    border-radius: var(--radius-lg); padding: 28px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--slate-200); }
+  .card-num { font-size: 11px; font-weight: 700; color: var(--teal-600); letter-spacing: 0.14em; margin-bottom: 12px; }
+  .card-title { font-size: 19px; font-weight: 700; color: var(--navy-900); margin: 0 0 10px; line-height: 1.3; letter-spacing: -0.01em; }
+  .card-body { font-size: 14.5px; color: var(--slate-600); margin: 0; line-height: 1.6; }
+
+  /* --------- PILLARS --------- */
+  .pillar {
+    background: linear-gradient(180deg, var(--navy-900) 0%, var(--navy-800) 100%);
+    color: white; border-radius: var(--radius-lg); padding: 28px;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: all 0.2s ease;
+  }
+  .pillar:hover {
+    transform: translateY(-3px);
+    border-color: rgba(20,184,166,0.4);
+    box-shadow: 0 16px 36px rgba(10,31,61,0.32);
+  }
+  .pillar-icon {
+    width: 46px; height: 46px;
+    background: linear-gradient(135deg, rgba(20,184,166,0.25), rgba(20,184,166,0.08));
+    border: 1px solid rgba(20,184,166,0.32);
+    border-radius: 11px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 18px;
+  }
+  .pillar-icon svg { width: 22px; height: 22px; color: var(--teal-400); }
+  .pillar-title { font-size: 17px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; }
+  .pillar-body { font-size: 13.5px; color: rgba(255,255,255,0.74); margin: 0; line-height: 1.55; }
+
+  /* --------- TABS --------- */
+  .tabs {
+    display: inline-flex; background: var(--slate-100); padding: 4px;
+    border-radius: 12px; margin-bottom: 32px;
+  }
+  .tabs button {
+    border: 0; background: transparent; padding: 10px 22px;
+    font-size: 14px; font-weight: 600; color: var(--slate-500);
+    border-radius: 8px; cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s ease;
+  }
+  .tabs button.active {
+    background: var(--white); color: var(--navy-900); box-shadow: var(--shadow-sm);
+  }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  @media (max-width: 900px) { .steps { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
+  .step {
+    background: var(--slate-50); border-radius: var(--radius); padding: 22px;
+    border-left: 3px solid var(--teal-500);
+    transition: all 0.2s ease;
+  }
+  .step:hover { background: white; box-shadow: var(--shadow-sm); }
+  .step-num { font-size: 10.5px; font-weight: 700; color: var(--teal-600); letter-spacing: 0.12em; }
+  .step-title { font-size: 16px; font-weight: 700; color: var(--navy-900); margin: 8px 0 8px; }
+  .step-body { font-size: 13px; color: var(--slate-600); margin: 0; line-height: 1.55; }
+
+  /* --------- TIMELINE --------- */
+  .timeline { position: relative; margin-top: 44px; }
+  .timeline-line {
+    position: absolute; left: 0; right: 0; top: 28px;
+    height: 2px; background: var(--slate-200);
+  }
+  .timeline-line-active {
+    position: absolute; left: 0; top: 28px; height: 2px;
+    background: linear-gradient(90deg, var(--teal-500), var(--navy-500));
+    width: 28%;
+  }
+  .timeline-grid {
+    position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  }
+  @media (max-width: 900px) {
+    .timeline-grid { grid-template-columns: 1fr 1fr; }
+    .timeline-line, .timeline-line-active { display: none; }
+  }
+  @media (max-width: 560px) { .timeline-grid { grid-template-columns: 1fr; } }
+  .tnode { position: relative; padding-top: 56px; }
+  .tnode::before {
+    content: ""; position: absolute; left: 0; top: 22px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: white; border: 3px solid var(--slate-200);
+    z-index: 1;
+  }
+  .tnode.now::before {
+    border-color: var(--teal-500); background: var(--teal-500);
+    box-shadow: 0 0 0 6px rgba(20,184,166,0.18);
+  }
+  .tnode.done::before { background: var(--teal-500); border-color: var(--teal-500); }
+  .tnode-date {
+    font-size: 11px; font-weight: 700; color: var(--teal-600); letter-spacing: 0.08em;
+  }
+  .tnode-date.muted { color: var(--slate-400); }
+  .tnode h4 { font-size: 15.5px; font-weight: 700; color: var(--navy-900); margin: 6px 0 6px; line-height: 1.3; }
+  .tnode p { font-size: 13px; color: var(--slate-600); margin: 0; line-height: 1.55; }
+
+  /* --------- PHASE 1 SPOTLIGHT --------- */
+  .spotlight {
+    background:
+      radial-gradient(800px 400px at 100% 0%, rgba(20,184,166,0.20), transparent 50%),
+      linear-gradient(135deg, var(--navy-900), var(--navy-700));
+    color: white; border-radius: var(--radius-xl); padding: 60px;
+    border: 1px solid rgba(255,255,255,0.06);
+    position: relative; overflow: hidden;
+  }
+  @media (max-width: 700px) { .spotlight { padding: 32px; } }
+  .spotlight h2 { color: white; }
+  .spotlight .section-eyebrow { color: var(--teal-400); }
+  .spotlight .section-eyebrow::before { background: var(--teal-400); }
+  .spotlight-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 44px; align-items: center;
+    position: relative;
+  }
+  @media (max-width: 800px) { .spotlight-grid { grid-template-columns: 1fr; } }
+  .spotlight-list { list-style: none; padding: 0; margin: 0; }
+  .spotlight-list li {
+    padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.12);
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .spotlight-list li:last-child { border-bottom: 0; }
+  .check {
+    width: 24px; height: 24px;
+    background: linear-gradient(135deg, var(--teal-500), var(--teal-600));
+    border-radius: 7px;
+    display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(20,184,166,0.34);
+  }
+  .check svg { width: 13px; height: 13px; color: white; }
+  .spotlight-li-text strong { display: block; font-weight: 700; color: white; font-size: 14.5px; }
+  .spotlight-li-text span { color: rgba(255,255,255,0.72); font-size: 13.5px; }
+
+  /* --------- STANDARDS + 5-GRADE BADGES --------- */
+  .standards {
+    background: linear-gradient(180deg, var(--slate-50), var(--white));
+    border: 1px solid var(--slate-100);
+    border-radius: var(--radius-xl); padding: 44px;
+  }
+  @media (max-width: 700px) { .standards { padding: 28px; } }
+  .standards-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 28px; flex-wrap: wrap; gap: 12px;
+  }
+  .grades {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px;
+  }
+  @media (max-width: 700px) { .grades { grid-template-columns: repeat(2, 1fr); } }
+  .grade {
+    position: relative;
+    background: white; border-radius: 14px; padding: 20px 18px;
+    border: 1px solid var(--slate-200);
+    transition: all 0.2s ease;
+    overflow: hidden;
+  }
+  .grade:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+  .grade::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  }
+  .grade-letter {
+    font-size: 36px; font-weight: 900; line-height: 1;
+    letter-spacing: -0.04em;
+  }
+  .grade-range {
+    font-size: 11px; color: var(--slate-400); margin-top: 3px;
+    font-weight: 600; letter-spacing: 0.04em;
+  }
+  .grade-label { font-size: 12.5px; color: var(--slate-600); margin-top: 10px; font-weight: 600; }
+  .grade.S::before { background: linear-gradient(90deg, var(--gold-300), var(--gold-500)); }
+  .grade.S .grade-letter { color: var(--gold-500); }
+  .grade.A::before { background: linear-gradient(90deg, var(--teal-400), var(--teal-600)); }
+  .grade.A .grade-letter { color: var(--teal-600); }
+  .grade.B::before { background: linear-gradient(90deg, var(--navy-500), var(--navy-700)); }
+  .grade.B .grade-letter { color: var(--navy-700); }
+  .grade.C::before { background: var(--slate-400); }
+  .grade.C .grade-letter { color: var(--slate-400); }
+  .grade.D::before { background: var(--red-500); }
+  .grade.D .grade-letter { color: var(--red-500); }
+
+  /* --------- ★ SAMPLE INSPECTION REPORT TRIGGER --------- */
+  .sample-cta {
+    margin-top: 28px; padding: 22px; background: white;
+    border: 1px dashed var(--teal-500); border-radius: 14px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .sample-cta .text { font-size: 14px; color: var(--slate-700); }
+  .sample-cta strong { color: var(--navy-900); }
+
+  /* --------- ★ ESTIMATOR --------- */
+  .estimator-section { background: var(--slate-50); }
+  .estimator-wrap {
+    background: white; border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md); border: 1px solid var(--slate-100);
+    padding: 44px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+  }
+  @media (max-width: 900px) {
+    .estimator-wrap { grid-template-columns: 1fr; padding: 28px; gap: 24px; }
+  }
+  .estimator-form .field { margin-bottom: 14px; }
+  .estimator-out {
+    background: linear-gradient(180deg, var(--navy-900), var(--navy-800));
+    color: white; border-radius: 14px; padding: 28px;
+    border: 1px solid rgba(255,255,255,0.06);
+    position: relative; overflow: hidden;
+    min-height: 260px;
+  }
+  .estimator-out::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--teal-500), var(--gold-500));
+  }
+  .est-empty {
+    color: rgba(255,255,255,0.55); font-size: 14px; line-height: 1.6;
+    display: flex; flex-direction: column; justify-content: center; height: 100%;
+    text-align: center;
+  }
+  .est-empty svg { width: 36px; height: 36px; margin: 0 auto 14px; opacity: 0.5; }
+  .est-result-eyebrow {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--teal-400); margin-bottom: 14px;
+  }
+  .est-grade {
+    font-size: 56px; font-weight: 900; line-height: 1;
+    letter-spacing: -0.04em; color: white; margin-bottom: 6px;
+  }
+  .est-grade-sub { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 22px; }
+  .est-price-label { font-size: 12px; color: rgba(255,255,255,0.55); }
+  .est-price {
+    font-size: 28px; font-weight: 700; color: white;
+    letter-spacing: -0.02em; margin: 4px 0 16px;
+  }
+  .est-disclaimer {
+    font-size: 11.5px; color: rgba(255,255,255,0.5);
+    border-top: 1px solid rgba(255,255,255,0.12); padding-top: 14px;
+    line-height: 1.55;
+  }
+
+  /* --------- FORMS --------- */
+  .form-section { background: linear-gradient(180deg, #f8fafd 0%, #ffffff 100%); }
+  .form-wrap {
+    background: white; border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md); border: 1px solid var(--slate-100);
+    padding: 44px;
+  }
+  @media (max-width: 700px) { .form-wrap { padding: 24px; } }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+  .field { margin-bottom: 16px; }
+  .field label { display: block; font-size: 13px; font-weight: 600; color: var(--navy-900); margin-bottom: 6px; }
+  .field label .req { color: var(--red-500); margin-left: 2px; }
+  .field input, .field select, .field textarea {
+    width: 100%; padding: 12px 14px; font-size: 15px;
+    border: 1px solid var(--slate-200); border-radius: 10px;
+    background: var(--white); color: var(--slate-800);
+    font-family: inherit;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none; border-color: var(--teal-500);
+    box-shadow: 0 0 0 3px rgba(20,184,166,0.18);
+  }
+  .field textarea { resize: vertical; min-height: 88px; }
+  .field-hint { font-size: 12px; color: var(--slate-400); margin-top: 4px; }
+  .form-success {
+    display: none;
+    background: rgba(20,184,166,0.1); color: var(--teal-700);
+    padding: 16px; border-radius: 10px; font-weight: 600; margin-top: 16px;
+    font-size: 14px;
+  }
+  .form-success.show { display: block; }
+
+  /* --------- PARTNERS --------- */
+  .partners-section {
+    background:
+      radial-gradient(900px 500px at 0% 100%, rgba(20,184,166,0.18), transparent 60%),
+      linear-gradient(135deg, var(--navy-900), var(--navy-800));
+    color: white;
+    position: relative;
+  }
+  .partners-section h2 { color: white; }
+  .partners-section .section-eyebrow { color: var(--teal-400); }
+  .partners-section .section-eyebrow::before { background: var(--teal-400); }
+  .partners-section .section-sub { color: rgba(255,255,255,0.72); }
+  .partner-types {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+    margin-bottom: 44px;
+    position: relative;
+  }
+  @media (max-width: 800px) { .partner-types { grid-template-columns: 1fr; } }
+  .ptype {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-lg); padding: 26px;
+    transition: all 0.2s ease;
+  }
+  .ptype:hover {
+    border-color: rgba(20,184,166,0.42);
+    transform: translateY(-2px);
+    background: rgba(255,255,255,0.07);
+  }
+  .ptype-icon {
+    width: 42px; height: 42px;
+    background: linear-gradient(135deg, rgba(20,184,166,0.25), rgba(20,184,166,0.08));
+    border: 1px solid rgba(20,184,166,0.3);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+  }
+  .ptype-icon svg { width: 20px; height: 20px; color: var(--teal-400); }
+  .ptype-tag {
+    display: inline-block; font-size: 9.5px; font-weight: 700; letter-spacing: 0.12em;
+    color: var(--teal-400); margin-bottom: 8px;
+  }
+  .ptype h4 { font-size: 16.5px; color: white; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; }
+  .ptype p { font-size: 13px; color: rgba(255,255,255,0.7); margin: 0 0 14px; line-height: 1.55; }
+  .ptype ul { padding: 0; margin: 0; list-style: none; }
+  .ptype li {
+    font-size: 12px; color: rgba(255,255,255,0.55);
+    padding-left: 14px; position: relative; margin: 5px 0;
+  }
+  .ptype li::before {
+    content: "→"; position: absolute; left: 0; color: var(--teal-400);
+  }
+  .partners-form-wrap {
+    background: white; color: var(--slate-800);
+    border-radius: var(--radius-xl); padding: 44px;
+    position: relative;
+  }
+  @media (max-width: 700px) { .partners-form-wrap { padding: 24px; } }
+
+  /* --------- FAQ --------- */
+  .faq-section {}
+  .faq-grid { max-width: 820px; margin: 0 auto; }
+  .faq-item {
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    transition: all 0.18s ease;
+    overflow: hidden;
+  }
+  .faq-item[open] { border-color: var(--teal-500); box-shadow: var(--shadow-sm); }
+  .faq-item summary {
+    cursor: pointer; padding: 18px 22px;
+    list-style: none; display: flex; justify-content: space-between; align-items: center;
+    gap: 16px;
+    font-size: 15px; font-weight: 600; color: var(--navy-900);
+    user-select: none;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: ''; width: 12px; height: 12px;
+    border-right: 2px solid var(--slate-400);
+    border-bottom: 2px solid var(--slate-400);
+    transform: rotate(45deg); margin-top: -4px;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+  .faq-item[open] summary::after { transform: rotate(225deg); margin-top: 4px; border-color: var(--teal-500); }
+  .faq-body {
+    padding: 0 22px 20px; font-size: 14px; color: var(--slate-600); line-height: 1.65;
+  }
+
+  /* --------- ABOUT --------- */
+  .about {
+    display: grid; grid-template-columns: 1fr 1.2fr; gap: 52px; align-items: center;
+  }
+  @media (max-width: 900px) { .about { grid-template-columns: 1fr; } }
+  .assets-summary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(20,184,166,0.1); color: var(--teal-700);
+    padding: 9px 16px; border-radius: 999px;
+    font-size: 13px; font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .assets-summary svg { width: 14px; height: 14px; }
+  .assets { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .asset {
+    background: white; border-radius: 12px; padding: 18px;
+    border: 1px solid var(--slate-100);
+    border-top: 3px solid var(--teal-500);
+    transition: all 0.2s ease;
+  }
+  .asset:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+  .asset-title { font-size: 13.5px; font-weight: 700; color: var(--navy-900); margin-bottom: 6px; }
+  .asset-body { font-size: 12.5px; color: var(--slate-600); margin: 0; line-height: 1.5; }
+
+  /* --------- STICKY CTA BAR --------- */
+  .sticky-bar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+    background: var(--navy-900);
+    color: white;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    box-shadow: 0 -8px 24px rgba(10,31,61,0.32);
+  }
+  .sticky-bar.show { transform: translateY(0); }
+  .sticky-bar-inner {
+    max-width: var(--max-w); margin: 0 auto;
+    padding: 12px 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    flex-wrap: wrap;
+  }
+  .sticky-bar-text {
+    font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 10px;
+  }
+  .sticky-bar-ctas { display: flex; gap: 8px; }
+  .sticky-bar .btn { padding: 8px 14px; font-size: 12.5px; }
+
+  /* --------- MODAL --------- */
+  .modal-backdrop {
+    position: fixed; inset: 0; z-index: 100;
+    background: rgba(10,31,61,0.65); backdrop-filter: blur(6px);
+    display: none; align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  .modal-backdrop.show { display: flex; }
+  .modal {
+    background: white; border-radius: var(--radius-xl);
+    max-width: 720px; width: 100%; max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-xl);
+    position: relative;
+    animation: modalIn 0.28s ease;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.96) translateY(8px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .modal-close {
+    position: absolute; top: 14px; right: 14px;
+    background: var(--slate-100); border: 0; width: 32px; height: 32px;
+    border-radius: 50%; font-size: 18px; cursor: pointer; color: var(--slate-600);
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s ease;
+  }
+  .modal-close:hover { background: var(--slate-200); color: var(--navy-900); }
+
+  /* --------- SAMPLE REPORT (inside modal) --------- */
+  .report-page { padding: 36px; font-family: inherit; }
+  .report-head {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    padding-bottom: 18px; border-bottom: 2px solid var(--navy-900);
+    margin-bottom: 22px;
+  }
+  .report-head h3 {
+    margin: 0; font-size: 22px; color: var(--navy-900); letter-spacing: -0.015em;
+  }
+  .report-head-meta { text-align: right; font-size: 11px; color: var(--slate-500); line-height: 1.6; }
+  .report-meta-id { font-weight: 700; color: var(--navy-900); font-size: 13px; font-family: ui-monospace, 'SF Mono', Menlo, monospace; }
+  .report-row {
+    display: grid; grid-template-columns: 140px 1fr; gap: 14px;
+    padding: 11px 0; border-bottom: 1px solid var(--slate-100); font-size: 13px;
+  }
+  .report-row strong { color: var(--slate-500); font-weight: 600; font-size: 11.5px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .report-row span { color: var(--navy-900); font-weight: 500; }
+  .report-section-title {
+    margin: 22px 0 10px; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal-700);
+  }
+  .report-eval {
+    display: grid; grid-template-columns: 1fr auto; gap: 12px;
+    padding: 10px 0; border-bottom: 1px dashed var(--slate-200);
+    font-size: 13px;
+  }
+  .report-eval .domain { color: var(--slate-700); }
+  .report-eval .score { font-weight: 700; color: var(--teal-700); font-family: ui-monospace, 'SF Mono', Menlo, monospace; }
+  .report-final {
+    margin-top: 22px; padding: 18px;
+    background: linear-gradient(135deg, rgba(20,184,166,0.08), rgba(44,84,145,0.06));
+    border: 1px solid var(--teal-500); border-radius: 12px;
+  }
+  .report-final-grade {
+    font-size: 32px; font-weight: 900; color: var(--teal-700); letter-spacing: -0.02em;
+    line-height: 1; margin-bottom: 4px;
+  }
+  .report-final-text { font-size: 13px; color: var(--slate-700); }
+  .report-final-price {
+    font-size: 16px; font-weight: 700; color: var(--navy-900); margin-top: 8px;
+  }
+  .report-disclaimer {
+    margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--slate-100);
+    font-size: 10.5px; color: var(--slate-400); line-height: 1.55;
+  }
+
+  /* --------- FOOTER --------- */
+  footer {
+    background: linear-gradient(180deg, var(--navy-900), #06152b);
+    color: rgba(255,255,255,0.72); padding: 64px 0 28px;
+    position: relative;
+  }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; position: relative; }
+  @media (max-width: 800px) { .footer-grid { grid-template-columns: 1fr; } }
+  footer h4 { color: white; font-size: 13px; margin: 0 0 14px; font-weight: 700; letter-spacing: 0.02em; }
+  footer a { color: rgba(255,255,255,0.62); text-decoration: none; display: block; font-size: 13.5px; padding: 4px 0; transition: color 0.15s; }
+  footer a:hover { color: white; }
+  .footer-bot {
+    border-top: 1px solid rgba(255,255,255,0.12);
+    margin-top: 40px; padding-top: 22px;
+    font-size: 11.5px; color: rgba(255,255,255,0.4);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    position: relative;
+  }
+
+  /* --------- CATEGORIES GRID --------- */
+  .cat-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+  }
+  @media (max-width: 900px) { .cat-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .cat-grid { grid-template-columns: 1fr; } }
+  .cat-card {
+    background: white; border: 1px solid var(--slate-100); border-radius: 16px;
+    padding: 26px; transition: all 0.22s ease;
+    box-shadow: var(--shadow-sm);
+    position: relative; overflow: hidden;
+  }
+  .cat-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--teal-500), var(--navy-500));
+    opacity: 0; transition: opacity 0.22s ease;
+  }
+  .cat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--teal-500);
+  }
+  .cat-card:hover::before { opacity: 1; }
+  .cat-icon {
+    width: 46px; height: 46px; border-radius: 11px;
+    background: linear-gradient(135deg, rgba(20,184,166,0.16), rgba(20,184,166,0.04));
+    border: 1px solid rgba(20,184,166,0.22);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+  }
+  .cat-icon svg { width: 22px; height: 22px; color: var(--teal-600); }
+  .cat-card .cat-meta {
+    font-size: 10.5px; color: var(--slate-400); margin-bottom: 8px;
+    letter-spacing: 0.12em; font-weight: 700;
+  }
+  .cat-card h3 { font-size: 18px; font-weight: 700; color: var(--navy-900); margin: 0 0 10px; letter-spacing: -0.01em; }
+  .cat-card p { font-size: 13.5px; color: var(--slate-600); margin: 0 0 16px; line-height: 1.6; }
+  .cat-card a {
+    font-size: 13px; font-weight: 600; color: var(--teal-700); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .cat-card a:hover { color: var(--teal-600); gap: 8px; }
+
+  /* --------- PRINT --------- */
+  @media print {
+    .nav, .sticky-bar, .modal-backdrop, .lang-toggle, .hero-ctas, .form-section, .partners-section .partners-form-wrap, .live-pill { display: none !important; }
+    section { padding: 24px 0; break-inside: avoid; }
+    body { color: black; background: white; }
+    .pillar, .ptype, .status-item, .spotlight { background: white !important; color: black !important; border: 1px solid #ddd !important; }
+    .pillar-title, .ptype h4, .status-item h4, .spotlight h2, .spotlight-li-text strong { color: black !important; }
+    .pillar-body, .ptype p, .status-item p, .spotlight p, .spotlight-li-text span { color: #444 !important; }
+  }
+</style>
+</head>
+<body class="lang-ko">
+
+<!-- ===== SVG ICON SPRITE ===== -->
+<svg width="0" height="0" style="position: absolute;" aria-hidden="true">
+  <defs>
+    <symbol id="i-shield-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M12 2.5l8 3v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10v-6l8-3zm-3.5 9.5l2.5 2.5 5-5"/></symbol>
+    <symbol id="i-cog" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1.08-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1.08 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.07a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h.07a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.07a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+    <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6" fill="none" stroke="currentColor" stroke-width="1.7"/><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M8.5 13.5L7 22l5-3 5 3-1.5-8.5"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path fill="none" stroke="currentColor" stroke-width="1.7" d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM14 2v6h6M9 13h6M9 17h6"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></symbol>
+    <symbol id="i-flow" viewBox="0 0 24 24"><circle cx="5" cy="5" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="19" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="5" cy="19" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path fill="none" stroke="currentColor" stroke-width="1.7" d="M8 5h11v14H8"/></symbol>
+    <symbol id="i-supply" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M3 7l9-4 9 4-9 4-9-4zm0 5l9 4 9-4M3 17l9 4 9-4"/></symbol>
+    <symbol id="i-launch" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M4.5 16.5L3 21l4.5-1.5M14.5 3.5l6 6L11 19l-6-6 9.5-9.5zM13 7l4 4"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path fill="none" stroke="currentColor" stroke-width="1.7" d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+    <symbol id="i-tool" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M14.7 6.3a4 4 0 0 1 .9 4.4l5.3 5.3-2.8 2.8-5.3-5.3a4 4 0 0 1-4.4-.9 4 4 0 0 1-.9-4.4l2.3 2.3 1.4-1.4-2.3-2.3a4 4 0 0 1 5.8-.5z"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M1 3h15v13H1zM16 8h4l3 3v5h-7M5.5 21a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM18.5 21a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 5l7 7-7 7"/></symbol>
+    <symbol id="i-calc" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" d="M8 6h8M8 12h.01M12 12h.01M16 12h.01M8 16h.01M12 16h.01M16 16h.01"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path fill="currentColor" d="M12 1l2.39 7.36H22l-6.18 4.48 2.36 7.32L12 15.68 5.82 20.16l2.36-7.32L2 8.36h7.61z"/></symbol>
+    <!-- Category icons -->
+    <symbol id="i-dental" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M12 2C8 2 6 4 6 7c0 2 .5 4 1 6s.5 4 1 5.5c.4 1.2 1 1.5 1.5 1.5 1 0 1.2-1 1.5-3 .3-1.7.5-3 1-3s.7 1.3 1 3c.3 2 .5 3 1.5 3 .5 0 1.1-.3 1.5-1.5.5-1.5.5-3.5 1-5.5s1-4 1-6c0-3-2-5-6-5z"/></symbol>
+    <symbol id="i-pulse" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M3 12h3l3-9 4 18 3-9h5"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+    <symbol id="i-endoscope" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M4 4c0 6 3 9 8 11s8 5 8 5"/><circle cx="4" cy="4" r="2" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="20" cy="20" r="2" fill="currentColor"/></symbol>
+    <symbol id="i-scan" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 12h10"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" d="M12 8v8M8 12h8"/></symbol>
+    <!-- Medical device illustrations for hero listings -->
+    <symbol id="i-dental-chair" viewBox="0 0 32 32">
+      <path d="M6 25v-4a2 2 0 0 1 2-2h10M9 19V11a4 4 0 0 1 4-4h4v12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M22 11l-3 4M25 14l-3 4M22 22l-3 1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <circle cx="25" cy="11" r="1.5" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-ultrasound-probe" viewBox="0 0 32 32">
+      <rect x="4" y="5" width="18" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 10h10M8 12.5h7M8 8h5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M20 18l5 7-2.5 1.5L17 19.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M19 20l-2 1M21 22l-2 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-xray-pano" viewBox="0 0 32 32">
+      <path d="M6 14a10 10 0 0 1 20 0v3a10 10 0 0 1-20 0z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M16 4v3M10 14v3M16 14v3M22 14v3M11 21l2-2M19 19l2 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <circle cx="16" cy="14" r="1.5" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- =============== NAV =============== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="#top">
+      <span class="logo-mark">
+        <svg viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M4 19V5l4 9 4-9v14M16 19V5m0 7h4"/></svg>
+      </span>
+      MEDISTOCK
+      <span class="badge-tentative" data-ko>가칭</span>
+      <span class="badge-tentative" data-en>Tentative</span>
+    </a>
+    <div class="nav-links">
+      <a href="#solution" data-ko>솔루션</a><a href="#solution" data-en>Solution</a>
+      <a href="#categories" data-ko>카테고리</a><a href="#categories" data-en>Categories</a>
+      <a href="#timeline" data-ko>로드맵</a><a href="#timeline" data-en>Roadmap</a>
+      <a href="#estimator" data-ko>시세 추정</a><a href="#estimator" data-en>Estimator</a>
+      <a href="#partners" data-ko>파트너 모집</a><a href="#partners" data-en>Partners</a>
+      <a href="#faq" data-ko>FAQ</a><a href="#faq" data-en>FAQ</a>
+      <div class="lang-toggle" role="tablist" aria-label="Language">
+        <button id="btn-ko" class="active" onclick="setLang('ko')">KR</button>
+        <button id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- =============== HERO =============== -->
+<section id="top" class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="live-pill">
+        <span class="live-dot"></span>
+        <span data-ko>현재 셀러·바이어·파트너 모집 중</span>
+        <span data-en>Now accepting seller, buyer & partner inquiries</span>
+      </div>
+
+      <h1 class="hero-title" data-ko>
+        한국의 의료기기를,<br/>세계 어디서든 안심하고.
+      </h1>
+      <h1 class="hero-title" data-en>
+        Korean medical equipment,<br/>trusted globally.
+      </h1>
+
+      <p class="hero-sub" data-ko>
+        MEDISTOCK은 IEC 63077·ISO 13485 표준 기반 인증·등급제로 한국의 의료기기 공급자와 글로벌 바이어를 연결합니다.
+        KREAM·StockX의 "인증 = 해자" 모델을 단가 100배의 의료기기 시장에 적용합니다.
+        <strong>2026년 Q3, 정식 운영 시작.</strong>
+      </p>
+      <p class="hero-sub" data-en>
+        MEDISTOCK connects Korean suppliers with global buyers through certification and grading based on
+        IEC 63077 and ISO 13485. We apply the "authentication moat" proven by StockX and KREAM to a market with
+        100× higher unit prices. <strong>Launching Q3 2026.</strong>
+      </p>
+
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#seller">
+          <span data-ko>매도 의뢰</span>
+          <span data-en>Sell Equipment</span>
+          <svg width="14" height="14"><use href="#i-arrow"/></svg>
+        </a>
+        <a class="btn btn-teal" href="#buyer">
+          <span data-ko>바이어 등록</span>
+          <span data-en>Buyer Register</span>
+        </a>
+        <a class="btn btn-outline-teal" href="#partners">
+          <span data-ko>파트너 신청</span>
+          <span data-en>Partner Apply</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-card hero-listings reveal">
+      <div class="listings-head">
+        <div class="listings-title">
+          <span class="live-dot"></span>
+          <span data-ko>샘플 매물 미리보기</span>
+          <span data-en>Sample Listings Preview</span>
+        </div>
+        <span class="listings-meta" data-ko>※ 본격 운영 시 등재될 매물 예시</span>
+        <span class="listings-meta" data-en>※ Example of post-launch listings</span>
+      </div>
+
+      <div class="listing-item">
+        <div class="listing-icon">
+          <img src="images/dental-chair.jpg" alt="Dental Unit Chair" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <span class="icon-fallback"><svg><use href="#i-dental-chair"/></svg></span>
+        </div>
+        <div class="listing-info">
+          <div class="listing-name" data-ko>치과 유닛체어 · 프리미엄</div>
+          <div class="listing-name" data-en>Dental Unit Chair · Premium</div>
+          <div class="listing-sub" data-ko>2020년 · 2,800시간 사용</div>
+          <div class="listing-sub" data-en>2020 · 2,800 hrs used</div>
+        </div>
+        <div class="listing-grade grade-A">A</div>
+        <div class="listing-price">$12,500–$15,000</div>
+      </div>
+
+      <div class="listing-item">
+        <div class="listing-icon">
+          <img src="images/ultrasound.jpg" alt="Handheld Ultrasound" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <span class="icon-fallback"><svg><use href="#i-ultrasound-probe"/></svg></span>
+        </div>
+        <div class="listing-info">
+          <div class="listing-name" data-ko>휴대형 초음파 진단기</div>
+          <div class="listing-name" data-en>Handheld Ultrasound</div>
+          <div class="listing-sub" data-ko>2019년 · 3,400시간 사용</div>
+          <div class="listing-sub" data-en>2019 · 3,400 hrs used</div>
+        </div>
+        <div class="listing-grade grade-B">B</div>
+        <div class="listing-price">$6,800–$8,800</div>
+      </div>
+
+      <div class="listing-item">
+        <div class="listing-icon">
+          <img src="images/xray-pano.jpg" alt="Dental Panoramic X-Ray" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <span class="icon-fallback"><svg><use href="#i-xray-pano"/></svg></span>
+        </div>
+        <div class="listing-info">
+          <div class="listing-name" data-ko>치과 파노라마 X-Ray</div>
+          <div class="listing-name" data-en>Dental Panoramic X-Ray</div>
+          <div class="listing-sub" data-ko>2022년 · 거의 신품</div>
+          <div class="listing-sub" data-en>2022 · Like new</div>
+        </div>
+        <div class="listing-grade grade-S">S</div>
+        <div class="listing-price">$28,000–$34,000</div>
+      </div>
+
+      <div class="trust-strip listings-trust">
+        <span class="trust-chip"><svg><use href="#i-shield-check"/></svg>IEC 63077</span>
+        <span class="trust-chip"><svg><use href="#i-shield-check"/></svg>ISO 13485</span>
+        <span class="trust-chip"><svg><use href="#i-shield-check"/></svg>WHO 2025</span>
+        <span class="trust-chip"><svg><use href="#i-shield-check"/></svg>KGMP</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== STATUS STRIP =============== -->
+<section class="status-section pattern-dots">
+  <div class="container">
+    <div class="status-header">
+      <h3 class="status-title" data-ko>운영 준비 현황</h3>
+      <h3 class="status-title" data-en>Operational Readiness</h3>
+      <div class="status-meta">
+        <span class="live-dot"></span>
+        <span data-ko>최근 업데이트 · 2026.05</span>
+        <span data-en>Last updated · May 2026</span>
+      </div>
+    </div>
+    <div class="status-grid">
+      <div class="status-item reveal">
+        <div class="status-icon"><svg><use href="#i-doc"/></svg></div>
+        <div class="status-tag done"><span data-ko>완료</span><span data-en>READY</span></div>
+        <h4 data-ko>검수 표준 매뉴얼 v1</h4>
+        <h4 data-en>Inspection Manual v1</h4>
+        <p data-ko>IEC 63077 + ISO 13485 기반 카테고리별 매뉴얼 작성 완료.</p>
+        <p data-en>Category-specific manuals built on IEC 63077 + ISO 13485.</p>
+      </div>
+      <div class="status-item reveal">
+        <div class="status-icon"><svg><use href="#i-code"/></svg></div>
+        <div class="status-tag done"><span data-ko>완료</span><span data-en>READY</span></div>
+        <h4 data-ko>IT·플랫폼 자체 개발</h4>
+        <h4 data-en>In-house Platform</h4>
+        <p data-ko>마켓플레이스·인증·디지털 보고서 시스템 자체 구축 역량 보유.</p>
+        <p data-en>Marketplace, authentication, digital reports — all in-house capability.</p>
+      </div>
+      <div class="status-item reveal">
+        <div class="status-icon"><svg><use href="#i-flow"/></svg></div>
+        <div class="status-tag live"><span data-ko>가동 중</span><span data-en>LIVE</span></div>
+        <h4 data-ko>3채널 인테이크 가동</h4>
+        <h4 data-en>3-Channel Intake Live</h4>
+        <p data-ko>셀러·바이어·파트너 신청 동시 접수 중 (한국어·영어).</p>
+        <p data-en>Seller, buyer, and partner inquiries open (KR & EN).</p>
+      </div>
+      <div class="status-item reveal">
+        <div class="status-icon"><svg><use href="#i-supply"/></svg></div>
+        <div class="status-tag live"><span data-ko>진행 중</span><span data-en>IN PROGRESS</span></div>
+        <h4 data-ko>국내 공급 파이프라인</h4>
+        <h4 data-en>Korea Supply Pipeline</h4>
+        <p data-ko>병원·의사·업계 인맥을 통한 공급 풀 확보 단계.</p>
+        <p data-en>Building supply pool through hospital and dealer networks.</p>
+      </div>
+      <div class="status-item reveal">
+        <div class="status-icon"><svg><use href="#i-launch"/></svg></div>
+        <div class="status-tag next"><span data-ko>예정</span><span data-en>NEXT</span></div>
+        <h4 data-ko>정식 운영 시작</h4>
+        <h4 data-en>Operations Launch</h4>
+        <p data-ko>첫 거래 사이클 가동 · 동남아 또는 중동 진입국 1곳 · 2026년 Q3.</p>
+        <p data-en>First transaction cycle · 1 entry country (SE Asia or ME) · Q3 2026.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== OPPORTUNITY =============== -->
+<section id="opportunity">
+  <div class="container">
+    <div class="section-eyebrow" data-ko>시장 기회</div>
+    <div class="section-eyebrow" data-en>Opportunity</div>
+    <h2 class="reveal" data-ko>$21B 시장에서, 인증 모델은 비어있습니다.</h2>
+    <h2 class="reveal" data-en>A $21B market — and the certification model is missing.</h2>
+    <p class="section-sub reveal" data-ko>
+      기존 플랫폼(DOTmed, MedWOW, Bimedis)은 분류광고 수준입니다. 표준화된 인증·등급제·에스크로·PL 보험 구조가 비어있습니다.
+      MEDISTOCK은 그 공백을 정확히 채웁니다.
+    </p>
+    <p class="section-sub reveal" data-en>
+      Existing platforms (DOTmed, MedWOW, Bimedis) are essentially classified ads.
+      No standardized authentication, grading, escrow, or PL insurance exists. MEDISTOCK fills that exact gap.
+    </p>
+
+    <div class="grid-3">
+      <div class="card reveal">
+        <div class="card-num">01</div>
+        <h3 class="card-title" data-ko>검증 부재</h3>
+        <h3 class="card-title" data-en>No Verification</h3>
+        <p class="card-body" data-ko>표준화된 인증·등급제가 없습니다. 상태 보증 없이 거액이 송금됩니다.</p>
+        <p class="card-body" data-en>No standardized authentication or grading. Buyers wire large sums without condition guarantees.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-num">02</div>
+        <h3 class="card-title" data-ko>정보 비대칭</h3>
+        <h3 class="card-title" data-en>Information Asymmetry</h3>
+        <p class="card-body" data-ko>공식 시세표가 없습니다. 셀러는 헐값, 바이어는 비싸게 — 구조적 마찰이 큽니다.</p>
+        <p class="card-body" data-en>No official price index. Sellers underprice, buyers overpay — friction is high.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-num">03</div>
+        <h3 class="card-title" data-ko>거래 후 분쟁</h3>
+        <h3 class="card-title" data-en>Post-Transaction Disputes</h3>
+        <p class="card-body" data-ko>에스크로·PL 보험·면책 조항 구조가 부재. 도착 후 결함 분쟁이 빈번합니다.</p>
+        <p class="card-body" data-en>No escrow, PL insurance, or disclaimer structures. Post-arrival disputes are frequent.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== SOLUTION =============== -->
+<section id="solution" style="background: var(--slate-50);">
+  <div class="container">
+    <div class="section-eyebrow" data-ko>솔루션</div>
+    <div class="section-eyebrow" data-en>Solution</div>
+    <h2 class="reveal" data-ko>우리가 파는 것은 "중고 의료기기"가 아닙니다.<br/>국경을 넘어가도 안심할 수 있는 "상태 보증서"입니다.</h2>
+    <h2 class="reveal" data-en>We don't sell used medical equipment.<br/>We sell the certificate that travels with it.</h2>
+    <p class="section-sub reveal" data-ko>4개의 운영 축으로 신뢰의 중개자가 됩니다.</p>
+    <p class="section-sub reveal" data-en>A trust intermediary built on four operational pillars.</p>
+
+    <div class="grid-4">
+      <div class="pillar reveal">
+        <div class="pillar-icon"><svg><use href="#i-shield-check"/></svg></div>
+        <h3 class="pillar-title" data-ko>검증 매뉴얼화</h3>
+        <h3 class="pillar-title" data-en>Inspection Standards</h3>
+        <p class="pillar-body" data-ko>IEC 63077 + ISO 13485 기반 카테고리별 검수 표준.</p>
+        <p class="pillar-body" data-en>Protocols based on IEC 63077 and ISO 13485.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-icon"><svg><use href="#i-cog"/></svg></div>
+        <h3 class="pillar-title" data-ko>검수 인력 풀</h3>
+        <h3 class="pillar-title" data-en>Engineer Network</h3>
+        <p class="pillar-body" data-ko>의료기기 엔지니어 + 외부 프리랜서 전문가 풀.</p>
+        <p class="pillar-body" data-en>In-house engineers + curated external specialists.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-icon"><svg><use href="#i-award"/></svg></div>
+        <h3 class="pillar-title" data-ko>등급제 인증</h3>
+        <h3 class="pillar-title" data-en>Grading System</h3>
+        <p class="pillar-body" data-ko>S~D 5등급 + 디지털 검수 보고서 + 추적 ID.</p>
+        <p class="pillar-body" data-en>S~D grading + digital reports + traceable ID.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-icon"><svg><use href="#i-lock"/></svg></div>
+        <h3 class="pillar-title" data-ko>거래 안전망</h3>
+        <h3 class="pillar-title" data-en>Trade Safety Net</h3>
+        <p class="pillar-body" data-ko>에스크로 결제 · PL 보험 · 분쟁 조정.</p>
+        <p class="pillar-body" data-en>Escrow · PL insurance · dispute resolution.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== HOW IT WORKS =============== -->
+<section id="how">
+  <div class="container">
+    <div class="section-eyebrow" data-ko>작동 방식</div>
+    <div class="section-eyebrow" data-en>How it works</div>
+    <h2 class="reveal" data-ko>등록부터 정산까지, 부흥이 책임집니다.</h2>
+    <h2 class="reveal" data-en>From listing to settlement — handled end-to-end.</h2>
+
+    <div class="tabs" role="tablist">
+      <button id="tab-btn-seller" class="active" onclick="switchTab('sellerflow')">
+        <span data-ko>셀러 (국내)</span><span data-en>Sellers (Korea)</span>
+      </button>
+      <button id="tab-btn-buyer" onclick="switchTab('buyerflow')">
+        <span data-ko>바이어 (해외)</span><span data-en>Buyers (Overseas)</span>
+      </button>
+    </div>
+
+    <div id="tab-sellerflow" class="tab-panel active">
+      <div class="steps">
+        <div class="step"><div class="step-num">STEP 01</div><h4 class="step-title" data-ko>매각 의뢰</h4><h4 class="step-title" data-en>Submit</h4><p class="step-body" data-ko>장비 정보·사진 폼 제출. 24시간 내 회신.</p><p class="step-body" data-en>Submit equipment info & photos. Reply within 24h.</p></div>
+        <div class="step"><div class="step-num">STEP 02</div><h4 class="step-title" data-ko>검수·등급</h4><h4 class="step-title" data-en>Inspect</h4><p class="step-body" data-ko>방문/원격 검수. S~D 등급 + 디지털 보고서.</p><p class="step-body" data-en>On-site/remote inspection. S–D grade + report.</p></div>
+        <div class="step"><div class="step-num">STEP 03</div><h4 class="step-title" data-ko>매물 등재·매칭</h4><h4 class="step-title" data-en>List & Match</h4><p class="step-body" data-ko>글로벌 바이어 풀 매칭. 시세 인덱스 기반 가격.</p><p class="step-body" data-en>Matched to global buyers. Index-based pricing.</p></div>
+        <div class="step"><div class="step-num">STEP 04</div><h4 class="step-title" data-ko>거래·정산</h4><h4 class="step-title" data-en>Settle</h4><p class="step-body" data-ko>에스크로 확인 후 정산. 운송·통관 일원화.</p><p class="step-body" data-en>Escrow-confirmed settlement. Logistics handled.</p></div>
+      </div>
+    </div>
+
+    <div id="tab-buyerflow" class="tab-panel">
+      <div class="steps">
+        <div class="step"><div class="step-num">STEP 01</div><h4 class="step-title" data-ko>사전 등록</h4><h4 class="step-title" data-en>Register</h4><p class="step-body" data-ko>관심 카테고리·예산·시점 등록.</p><p class="step-body" data-en>Register interests, budget, timing.</p></div>
+        <div class="step"><div class="step-num">STEP 02</div><h4 class="step-title" data-ko>매물·검수 보고서 확인</h4><h4 class="step-title" data-en>Review</h4><p class="step-body" data-ko>디지털 검수 보고서, 사진, 사용시간 로그.</p><p class="step-body" data-en>Review reports, photos, usage logs.</p></div>
+        <div class="step"><div class="step-num">STEP 03</div><h4 class="step-title" data-ko>에스크로 결제</h4><h4 class="step-title" data-en>Escrow</h4><p class="step-body" data-ko>제3자 에스크로. 도착·검수 시 정산.</p><p class="step-body" data-en>Third-party escrow.</p></div>
+        <div class="step"><div class="step-num">STEP 04</div><h4 class="step-title" data-ko>운송·설치·A/S</h4><h4 class="step-title" data-en>Deliver & Support</h4><p class="step-body" data-ko>분해·해상운송·통관·설치 패키지.</p><p class="step-body" data-en>Shipping, customs, install — bundled.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== TIMELINE =============== -->
+<section id="timeline" style="background: var(--slate-50);">
+  <div class="container">
+    <div class="section-eyebrow" data-ko>로드맵</div>
+    <div class="section-eyebrow" data-en>Roadmap</div>
+    <h2 class="reveal" data-ko>정식 운영까지, 일정은 정해져 있습니다.</h2>
+    <h2 class="reveal" data-en>The launch path is fixed.</h2>
+    <p class="section-sub reveal" data-ko>파트너십 변수와 무관하게 진행되는 운영 일정입니다. 합류 시점이 빠를수록 영향력이 큽니다.</p>
+    <p class="section-sub reveal" data-en>A schedule that runs regardless of partnership variables. Earlier engagement means greater influence.</p>
+
+    <div class="timeline">
+      <div class="timeline-line"></div>
+      <div class="timeline-line-active"></div>
+      <div class="timeline-grid">
+        <div class="tnode now reveal">
+          <div class="tnode-date">2026 Q2 · <span data-ko>현재</span><span data-en>Now</span></div>
+          <h4 data-ko>3채널 모집 가동</h4>
+          <h4 data-en>3-Channel Intake Live</h4>
+          <p data-ko>셀러·바이어·파트너 동시 접수. 검수 매뉴얼 v1 완료.</p>
+          <p data-en>Seller, buyer, partner inquiries open. Manual v1 ready.</p>
+        </div>
+        <div class="tnode reveal">
+          <div class="tnode-date">2026 Q3</div>
+          <h4 data-ko>정식 운영 시작</h4>
+          <h4 data-en>Operations Launch</h4>
+          <p data-ko>첫 거래 사이클 가동 · 진입국 1곳 (동남아 또는 중동).</p>
+          <p data-en>First transaction cycle · 1 entry country (SE Asia or ME).</p>
+        </div>
+        <div class="tnode reveal">
+          <div class="tnode-date muted">2026 Q4</div>
+          <h4 data-ko>다국가 확장</h4>
+          <h4 data-en>Multi-Country Expansion</h4>
+          <p data-ko>타깃 3국 동시 운영. GMV 누적 $2~5M 목표.</p>
+          <p data-en>3 target countries operating. Target $2–5M cumulative GMV.</p>
+        </div>
+        <div class="tnode reveal">
+          <div class="tnode-date muted">2027 H1</div>
+          <h4 data-ko>시세 인덱스 · 금융 파트너십</h4>
+          <h4 data-en>Price Index · Finance Partnerships</h4>
+          <p data-ko>글로벌 시세 인덱스 출시. 보험·금융 파트너십 시동.</p>
+          <p data-en>Global price index launch. Insurance & finance partnerships kick off.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== CATEGORIES (6 equal) =============== -->
+<section id="categories">
+  <div class="container">
+    <div class="section-eyebrow" data-ko>다루는 카테고리</div>
+    <div class="section-eyebrow" data-en>Categories Covered</div>
+    <h2 class="reveal" data-ko>6개 카테고리, 동일한 검수 표준.</h2>
+    <h2 class="reveal" data-en>Six categories, one inspection standard.</h2>
+    <p class="section-sub reveal" data-ko>
+      각 카테고리는 IEC 63077 기반의 카테고리별 검수 매뉴얼이 적용됩니다.
+      모든 카테고리에 대해 셀러·바이어 신청을 동시에 받고 있으며, 매물별 상태에 따라 등재 시점이 결정됩니다.
+    </p>
+    <p class="section-sub reveal" data-en>
+      Each category follows its own IEC 63077-based inspection manual.
+      We accept seller and buyer inquiries across all categories simultaneously — listing timing depends on per-item readiness.
+    </p>
+
+    <div class="cat-grid">
+      <div class="cat-card reveal">
+        <div class="cat-icon"><svg><use href="#i-dental"/></svg></div>
+        <div class="cat-meta" data-ko>치과 · DENTAL</div>
+        <div class="cat-meta" data-en>DENTAL</div>
+        <h3 data-ko>치과 장비</h3>
+        <h3 data-en>Dental Equipment</h3>
+        <p data-ko>유닛체어 · 임플란트 키트 · 파노라마 · 스케일러. 한국 글로벌 ~12% 점유 카테고리.</p>
+        <p data-en>Chairs, implant kits, panoramic, scalers. Korea holds ~12% global share.</p>
+        <a href="#seller"><span data-ko>매도 의뢰</span><span data-en>Submit</span><svg width="11" height="11"><use href="#i-arrow"/></svg></a>
+      </div>
+
+      <div class="cat-card reveal">
+        <div class="cat-icon"><svg><use href="#i-pulse"/></svg></div>
+        <div class="cat-meta" data-ko>초음파 · ULTRASOUND</div>
+        <div class="cat-meta" data-en>ULTRASOUND</div>
+        <h3 data-ko>초음파 진단기</h3>
+        <h3 data-en>Ultrasound Diagnostics</h3>
+        <p data-ko>핸드헬드 · 범용 진단장비. 한국 핸드헬드 글로벌 ~40% 점유.</p>
+        <p data-en>Handheld and general diagnostics. Korea holds ~40% in handheld globally.</p>
+        <a href="#seller"><span data-ko>매도 의뢰</span><span data-en>Submit</span><svg width="11" height="11"><use href="#i-arrow"/></svg></a>
+      </div>
+
+      <div class="cat-card reveal">
+        <div class="cat-icon"><svg><use href="#i-eye"/></svg></div>
+        <div class="cat-meta" data-ko>안과 · OPHTHALMOLOGY</div>
+        <div class="cat-meta" data-en>OPHTHALMOLOGY</div>
+        <h3 data-ko>안과 장비</h3>
+        <h3 data-en>Ophthalmology</h3>
+        <p data-ko>안압계 · 세극등 · OCT · 안저카메라. 고단가·고마진 카테고리.</p>
+        <p data-en>Tonometers, slit lamps, OCT, fundus cameras. High-unit-price, high-margin.</p>
+        <a href="#seller"><span data-ko>매도 의뢰</span><span data-en>Submit</span><svg width="11" height="11"><use href="#i-arrow"/></svg></a>
+      </div>
+
+      <div class="cat-card reveal">
+        <div class="cat-icon"><svg><use href="#i-endoscope"/></svg></div>
+        <div class="cat-meta" data-ko>내시경 · ENDOSCOPE</div>
+        <div class="cat-meta" data-en>ENDOSCOPE</div>
+        <h3 data-ko>내시경</h3>
+        <h3 data-en>Endoscope</h3>
+        <p data-ko>위·대장·기관지·복강 내시경. 부품 잔존가 판독 표준화 가능 카테고리.</p>
+        <p data-en>GI, colonoscopy, bronchoscopy, laparoscopy. Standardized part-life inspection.</p>
+        <a href="#seller"><span data-ko>매도 의뢰</span><span data-en>Submit</span><svg width="11" height="11"><use href="#i-arrow"/></svg></a>
+      </div>
+
+      <div class="cat-card reveal">
+        <div class="cat-icon"><svg><use href="#i-scan"/></svg></div>
+        <div class="cat-meta" data-ko>영상장비 · IMAGING</div>
+        <div class="cat-meta" data-en>IMAGING</div>
+        <h3 data-ko>영상장비</h3>
+        <h3 data-en>Imaging Equipment</h3>
+        <p data-ko>CT · MRI · X-ray · 초음파 스캐너. 고가 장비, 단건 거래 규모 큼.</p>
+        <p data-en>CT, MRI, X-ray, ultrasound scanners. High-value with large per-transaction scale.</p>
+        <a href="#seller"><span data-ko>매도 의뢰</span><span data-en>Submit</span><svg width="11" height="11"><use href="#i-arrow"/></svg></a>
+      </div>
+
+      <div class="cat-card reveal">
+        <div class="cat-icon"><svg><use href="#i-plus"/></svg></div>
+        <div class="cat-meta" data-ko>기타 · OTHER</div>
+        <div class="cat-meta" data-en>OTHER</div>
+        <h3 data-ko>그 외 카테고리</h3>
+        <h3 data-en>Other Categories</h3>
+        <p data-ko>위 카테고리에 해당되지 않는 의료기기도 문의 환영합니다. 검토 후 회신드립니다.</p>
+        <p data-en>Inquire about any medical equipment outside the above. We'll review and respond.</p>
+        <a href="#seller"><span data-ko>문의하기</span><span data-en>Inquire</span><svg width="11" height="11"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== STANDARDS + SAMPLE REPORT CTA =============== -->
+<section>
+  <div class="container">
+    <div class="section-eyebrow" data-ko>검증 표준</div>
+    <div class="section-eyebrow" data-en>Standards</div>
+    <h2 class="reveal" data-ko>국제 표준 + 의료기기 엔지니어 경험.</h2>
+    <h2 class="reveal" data-en>International standards meet hands-on engineering.</h2>
+    <p class="section-sub reveal" data-ko>
+      모든 매물은 IEC 63077:2019, ISO 13485:2016 기반 검수를 거치며,
+      외관·기능, 사용시간 로그, 부품 잔존가, 교정 이력, S/W 버전 5개 영역에서 평가됩니다.
+    </p>
+    <p class="section-sub reveal" data-en>
+      Every listing is inspected under IEC 63077:2019 and ISO 13485:2016 —
+      across 5 domains: exterior, usage logs, remaining part life, calibration, software.
+    </p>
+
+    <div class="standards reveal">
+      <div class="standards-header">
+        <div>
+          <strong style="color: var(--navy-900); font-size: 15px;" data-ko>5등급 표준 · S에서 D까지</strong>
+          <strong style="color: var(--navy-900); font-size: 15px;" data-en>5-Grade Standard · S to D</strong>
+        </div>
+        <div style="font-size: 12px; color: var(--slate-500);" data-ko>※ 모든 매물에 디지털 검수 보고서 발급</div>
+        <div style="font-size: 12px; color: var(--slate-500);" data-en>※ Digital report issued for every listing</div>
+      </div>
+      <div class="grades">
+        <div class="grade S"><div class="grade-letter">S</div><div class="grade-range">95–100</div><div class="grade-label" data-ko>거의 신품</div><div class="grade-label" data-en>Like new</div></div>
+        <div class="grade A"><div class="grade-letter">A</div><div class="grade-range">85–94</div><div class="grade-label" data-ko>우수</div><div class="grade-label" data-en>Excellent</div></div>
+        <div class="grade B"><div class="grade-letter">B</div><div class="grade-range">70–84</div><div class="grade-label" data-ko>양호</div><div class="grade-label" data-en>Good</div></div>
+        <div class="grade C"><div class="grade-letter">C</div><div class="grade-range">50–69</div><div class="grade-label" data-ko>보통 (리퍼비시 권장)</div><div class="grade-label" data-en>Fair (refurb)</div></div>
+        <div class="grade D"><div class="grade-letter">D</div><div class="grade-range">&lt; 50</div><div class="grade-label" data-ko>부품·교체</div><div class="grade-label" data-en>Parts</div></div>
+      </div>
+
+      <div class="sample-cta">
+        <div class="text">
+          <strong data-ko>실제 검수 보고서가 어떻게 생겼는지 궁금하시다면</strong>
+          <strong data-en>Curious what a real inspection report looks like?</strong>
+          <div style="font-size: 12.5px; color: var(--slate-500); margin-top: 4px;" data-ko>익명화된 샘플 보고서를 확인하실 수 있습니다.</div>
+          <div style="font-size: 12.5px; color: var(--slate-500); margin-top: 4px;" data-en>An anonymized sample is available.</div>
+        </div>
+        <button class="btn btn-outline-teal" onclick="openModal('sample-report')">
+          <svg width="14" height="14"><use href="#i-doc"/></svg>
+          <span data-ko>샘플 보고서 보기</span>
+          <span data-en>View Sample Report</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== ESTIMATOR (NEW) =============== -->
+<section id="estimator" class="estimator-section">
+  <div class="container">
+    <div class="section-eyebrow" data-ko>시세 추정</div>
+    <div class="section-eyebrow" data-en>Value Estimator</div>
+    <h2 class="reveal" data-ko>장비 시세, 30초 안에 가늠해보세요.</h2>
+    <h2 class="reveal" data-en>Estimate your equipment value in 30 seconds.</h2>
+    <p class="section-sub reveal" data-ko>
+      카테고리·연식·상태를 입력하시면 예상 등급 범위와 가격대를 즉시 확인하실 수 있습니다.
+      정식 검수 의뢰 시 디지털 보고서로 정확한 등급이 부여됩니다.
+    </p>
+    <p class="section-sub reveal" data-en>
+      Enter category, year, and condition to get an estimated grade range and price band.
+      Submit for inspection to receive the official digital grade report.
+    </p>
+
+    <div class="estimator-wrap reveal">
+      <div class="estimator-form">
+        <div class="field">
+          <label data-ko>장비 카테고리 <span class="req">*</span></label>
+          <label data-en>Category <span class="req">*</span></label>
+          <select id="est-cat">
+            <option value="" data-ko>선택해 주세요</option>
+            <option value="" data-en>Please select</option>
+            <option value="dental-chair" data-ko>치과 유닛체어</option>
+            <option value="dental-chair" data-en>Dental Chair</option>
+            <option value="dental-pano" data-ko>치과 파노라마</option>
+            <option value="dental-pano" data-en>Dental Panoramic</option>
+            <option value="implant" data-ko>임플란트 시스템</option>
+            <option value="implant" data-en>Implant System</option>
+            <option value="scaler" data-ko>스케일러·소형 장비</option>
+            <option value="scaler" data-en>Scaler / Small</option>
+            <option value="ultrasound" data-ko>초음파 진단기</option>
+            <option value="ultrasound" data-en>Ultrasound</option>
+            <option value="endoscope" data-ko>내시경</option>
+            <option value="endoscope" data-en>Endoscope</option>
+          </select>
+        </div>
+        <div class="field">
+          <label data-ko>구입 연식 <span class="req">*</span></label>
+          <label data-en>Year of Purchase <span class="req">*</span></label>
+          <select id="est-year">
+            <option value="" data-ko>선택해 주세요</option>
+            <option value="" data-en>Please select</option>
+            <option value="2024">2024</option>
+            <option value="2022">2022</option>
+            <option value="2020">2020</option>
+            <option value="2018">2018</option>
+            <option value="2016">2016</option>
+            <option value="2014">2014</option>
+            <option value="2012" data-ko>2012 이전</option>
+            <option value="2012" data-en>2012 or earlier</option>
+          </select>
+        </div>
+        <div class="field">
+          <label data-ko>자체 상태 평가 <span class="req">*</span></label>
+          <label data-en>Self-assessed Condition <span class="req">*</span></label>
+          <select id="est-cond">
+            <option value="" data-ko>선택해 주세요</option>
+            <option value="" data-en>Please select</option>
+            <option value="excellent" data-ko>매우 우수 (거의 신품 수준)</option>
+            <option value="excellent" data-en>Excellent (near new)</option>
+            <option value="good" data-ko>우수 (정상 사용감)</option>
+            <option value="good" data-en>Good (normal wear)</option>
+            <option value="fair" data-ko>보통 (눈에 띄는 사용감)</option>
+            <option value="fair" data-en>Fair (visible wear)</option>
+            <option value="needs" data-ko>리퍼비시 필요</option>
+            <option value="needs" data-en>Needs refurb</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" style="width: 100%; margin-top: 6px;" onclick="estimate()">
+          <svg width="14" height="14"><use href="#i-calc"/></svg>
+          <span data-ko>예상 등급·가격 계산하기</span>
+          <span data-en>Estimate Grade & Price</span>
+        </button>
+      </div>
+
+      <div class="estimator-out" id="est-out">
+        <div class="est-empty">
+          <svg><use href="#i-calc"/></svg>
+          <span data-ko>좌측에 정보를 입력하시면<br/>예상 등급과 가격대가 표시됩니다.</span>
+          <span data-en>Enter info to see<br/>estimated grade and price.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== SELLER FORM =============== -->
+<section id="seller" class="form-section">
+  <div class="container">
+    <div class="section-eyebrow" data-ko>셀러용 · 매도 의뢰</div>
+    <div class="section-eyebrow" data-en>For Sellers · Submit Equipment</div>
+    <h2 class="reveal" data-ko>의료기기 매각, 가장 안전한 채널로.</h2>
+    <h2 class="reveal" data-en>Sell your medical equipment safely.</h2>
+    <p class="section-sub reveal" data-ko>
+      병원·의원 폐업, 장비 교체, 사용하지 않는 장비의 매각을 의뢰하시면 24시간 내 부흥팀이 회신드립니다.
+      사전 검수·시세 안내·매물 등재까지 무료 상담입니다.
+    </p>
+    <p class="section-sub reveal" data-en>
+      Submit your equipment — clinic closure, replacement, or unused inventory.
+      Our team replies within 24 hours. Initial consultation, inspection guidance, and pricing are all free.
+    </p>
+
+    <div class="form-wrap reveal">
+      <form id="seller-form" onsubmit="return submitForm(event, 'seller')">
+        <div class="form-row">
+          <div class="field">
+            <label data-ko>병원·회사명 <span class="req">*</span></label>
+            <label data-en>Hospital / Company <span class="req">*</span></label>
+            <input type="text" name="org" required />
+          </div>
+          <div class="field">
+            <label data-ko>담당자 성함 <span class="req">*</span></label>
+            <label data-en>Contact Name <span class="req">*</span></label>
+            <input type="text" name="name" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label data-ko>연락처 (휴대전화) <span class="req">*</span></label>
+            <label data-en>Phone <span class="req">*</span></label>
+            <input type="tel" name="phone" required />
+          </div>
+          <div class="field">
+            <label data-ko>이메일 <span class="req">*</span></label>
+            <label data-en>Email <span class="req">*</span></label>
+            <input type="email" name="email" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label data-ko>장비 카테고리 <span class="req">*</span></label>
+            <label data-en>Equipment Category <span class="req">*</span></label>
+            <select name="category" required>
+              <option value="" data-ko>선택해 주세요</option>
+              <option value="" data-en>Please select</option>
+              <option value="dental" data-ko>치과 장비</option>
+              <option value="dental" data-en>Dental</option>
+              <option value="ultrasound" data-ko>초음파 진단기</option>
+              <option value="ultrasound" data-en>Ultrasound</option>
+              <option value="ophthalmology" data-ko>안과 장비</option>
+              <option value="ophthalmology" data-en>Ophthalmology</option>
+              <option value="endoscope" data-ko>내시경</option>
+              <option value="endoscope" data-en>Endoscope</option>
+              <option value="imaging" data-ko>영상장비 (CT/MRI/X-ray)</option>
+              <option value="imaging" data-en>Imaging (CT/MRI/X-ray)</option>
+              <option value="other" data-ko>기타</option>
+              <option value="other" data-en>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label data-ko>매각 희망 시점</label>
+            <label data-en>Preferred Timing</label>
+            <select name="timing">
+              <option value="1mo" data-ko>1개월 이내</option>
+              <option value="1mo" data-en>Within 1 month</option>
+              <option value="3mo" data-ko>3개월 이내</option>
+              <option value="3mo" data-en>Within 3 months</option>
+              <option value="6mo" data-ko>6개월 이내</option>
+              <option value="6mo" data-en>Within 6 months</option>
+              <option value="flex" data-ko>유연 / 시세에 따라</option>
+              <option value="flex" data-en>Flexible</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label data-ko>장비 정보 (모델·연식·사용시간·구입가)</label>
+          <label data-en>Equipment details (model, year, usage hours, purchase price)</label>
+          <textarea name="details" rows="4" placeholder="예: GE Logiq P5, 2018년 구입, 사용시간 약 4,200시간..."></textarea>
+          <div class="field-hint" data-ko>사진은 회신 후 별도 메일로 전송 부탁드립니다.</div>
+          <div class="field-hint" data-en>Please send photos via reply email.</div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px;">
+          <span data-ko>매도 의뢰 보내기</span>
+          <span data-en>Submit Equipment</span>
+          <svg width="14" height="14"><use href="#i-arrow"/></svg>
+        </button>
+        <div class="form-success" id="seller-success">
+          <span data-ko>✓ 이메일 클라이언트가 열렸습니다. 전송을 마저 진행해 주세요. 24시간 내 회신드립니다.</span>
+          <span data-en>✓ Your email client is now open. Please complete sending. We'll reply within 24 hours.</span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- =============== BUYER FORM =============== -->
+<section id="buyer">
+  <div class="container">
+    <div class="section-eyebrow" data-ko>바이어용 · 사전등록</div>
+    <div class="section-eyebrow" data-en>For Buyers · Pre-register</div>
+    <h2 class="reveal" data-ko>해외 바이어를 위한 사전등록.</h2>
+    <h2 class="reveal" data-en>Pre-register your buying interests.</h2>
+    <p class="section-sub reveal" data-ko>병원·딜러·디스트리뷰터로서 검증된 한국산 중고 의료기기에 관심이 있으시면 등록해 주세요. 관심 카테고리·예산·시점을 입력하시면 신규 매물 등재 시 우선 안내드립니다.</p>
+    <p class="section-sub reveal" data-en>Hospitals, dealers, and distributors interested in verified Korean used medical equipment — register below. We'll notify registered buyers first as new listings become available.</p>
+
+    <div class="form-wrap reveal">
+      <form id="buyer-form" onsubmit="return submitForm(event, 'buyer')">
+        <div class="form-row">
+          <div class="field"><label data-ko>조직명 <span class="req">*</span></label><label data-en>Organization <span class="req">*</span></label><input type="text" name="org" required /></div>
+          <div class="field"><label data-ko>담당자 성함 <span class="req">*</span></label><label data-en>Contact Name <span class="req">*</span></label><input type="text" name="name" required /></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label data-ko>이메일 <span class="req">*</span></label><label data-en>Email <span class="req">*</span></label><input type="email" name="email" required /></div>
+          <div class="field"><label data-ko>국가 <span class="req">*</span></label><label data-en>Country <span class="req">*</span></label><input type="text" name="country" placeholder="Vietnam, UAE, Indonesia..." required /></div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label data-ko>관심 카테고리 <span class="req">*</span></label>
+            <label data-en>Category of Interest <span class="req">*</span></label>
+            <select name="category" required>
+              <option value="" data-ko>선택해 주세요</option><option value="" data-en>Please select</option>
+              <option value="dental" data-ko>치과</option><option value="dental" data-en>Dental</option>
+              <option value="ultrasound" data-ko>초음파</option><option value="ultrasound" data-en>Ultrasound</option>
+              <option value="ophthalmology" data-ko>안과</option><option value="ophthalmology" data-en>Ophthalmology</option>
+              <option value="endoscope" data-ko>내시경</option><option value="endoscope" data-en>Endoscope</option>
+              <option value="imaging" data-ko>영상장비</option><option value="imaging" data-en>Imaging</option>
+              <option value="multi" data-ko>여러 카테고리</option><option value="multi" data-en>Multi-category</option>
+            </select>
+          </div>
+          <div class="field">
+            <label data-ko>예산 범위 (단건)</label>
+            <label data-en>Budget Range (per transaction)</label>
+            <select name="budget">
+              <option value="<5k" data-ko>$5,000 이하</option><option value="<5k" data-en>Under $5,000</option>
+              <option value="5-20k">$5,000–$20,000</option>
+              <option value="20-50k">$20,000–$50,000</option>
+              <option value="50-200k">$50,000–$200,000</option>
+              <option value=">200k" data-ko>$200,000 이상</option><option value=">200k" data-en>$200,000+</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label data-ko>구매 목적 / 비고</label><label data-en>Buying Purpose / Notes</label>
+          <textarea name="notes" rows="4" placeholder="예: 자사 치과 체인 3개 신규 개원..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-teal" style="width: 100%; padding: 16px;">
+          <span data-ko>사전등록 보내기</span><span data-en>Pre-register</span>
+          <svg width="14" height="14"><use href="#i-arrow"/></svg>
+        </button>
+        <div class="form-success" id="buyer-success">
+          <span data-ko>✓ 이메일 클라이언트가 열렸습니다. 전송을 마저 진행해 주세요.</span>
+          <span data-en>✓ Your email client is now open. Please complete sending.</span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- =============== PARTNERS =============== -->
+<section id="partners" class="partners-section pattern-dots">
+  <div class="container">
+    <div class="section-eyebrow" data-ko>파트너 모집</div>
+    <div class="section-eyebrow" data-en>Partner Recruitment</div>
+    <h2 class="reveal" data-ko>3개 파트너 채널, 동시 모집 중.</h2>
+    <h2 class="reveal" data-en>Three partner channels — recruiting now.</h2>
+    <p class="section-sub reveal" data-ko>MEDISTOCK은 다음 세 종류의 파트너를 동시 모집하고 있습니다. 해당 영역에 강점이 있으신 분은 신청해 주십시오 — 검토 후 회신드립니다.</p>
+    <p class="section-sub reveal" data-en>MEDISTOCK is actively recruiting partners in three areas. If you have strengths in any below, please apply — our team will review and respond.</p>
+
+    <div class="partner-types">
+      <div class="ptype reveal">
+        <div class="ptype-icon"><svg><use href="#i-globe"/></svg></div>
+        <div class="ptype-tag">PARTNER TYPE 01</div>
+        <h4 data-ko>글로벌 바이어 네트워크</h4>
+        <h4 data-en>Global Buyer Network</h4>
+        <p data-ko>해외 병원·딜러·디스트리뷰터 네트워크를 보유하신 분.</p>
+        <p data-en>Holders of overseas hospital, dealer, or distributor networks.</p>
+        <ul>
+          <li data-ko>특정 지역 (동남아/중동/중남미) 강점</li><li data-en>Regional strength (SE Asia/ME/LatAm)</li>
+          <li data-ko>다중 카테고리 또는 1개 깊은 카테고리</li><li data-en>Multi-category or deep single category</li>
+          <li data-ko>거래 GMV 기반 또는 마일스톤 보상</li><li data-en>GMV-based or milestone-based</li>
+        </ul>
+      </div>
+      <div class="ptype reveal">
+        <div class="ptype-icon"><svg><use href="#i-tool"/></svg></div>
+        <div class="ptype-tag">PARTNER TYPE 02</div>
+        <h4 data-ko>검수·교정 전문가</h4>
+        <h4 data-en>Inspection & Calibration</h4>
+        <p data-ko>의료기기 검수·교정·리퍼비시 경험이 있는 엔지니어.</p>
+        <p data-en>Engineers with med-device inspection, calibration, refurbishment experience.</p>
+        <ul>
+          <li data-ko>특정 카테고리 5년+ 경력</li><li data-en>5+ years in a specific category</li>
+          <li data-ko>건당 또는 월정액 검수 위탁</li><li data-en>Per-job or monthly retainer</li>
+          <li data-ko>한국·해외 모두 가능</li><li data-en>Korea or overseas based</li>
+        </ul>
+      </div>
+      <div class="ptype reveal">
+        <div class="ptype-icon"><svg><use href="#i-truck"/></svg></div>
+        <div class="ptype-tag">PARTNER TYPE 03</div>
+        <h4 data-ko>통관·운송·설치</h4>
+        <h4 data-en>Logistics & Customs</h4>
+        <p data-ko>의료기기 통관·해상운송·현지 설치 역량을 보유한 파트너사.</p>
+        <p data-en>Companies with med-device customs, shipping, and installation capability.</p>
+        <ul>
+          <li data-ko>HS코드·인허가 경험</li><li data-en>HS code & regulatory experience</li>
+          <li data-ko>특정 진입국 강점 우대</li><li data-en>Country-specific strength preferred</li>
+          <li data-ko>표준 패키지 마진 공유</li><li data-en>Standard package margin share</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="partners-form-wrap reveal">
+      <div class="section-eyebrow" style="color: var(--teal-700);" data-ko>파트너 신청</div>
+      <div class="section-eyebrow" style="color: var(--teal-700);" data-en>Partner Application</div>
+      <h3 style="font-size: 24px; color: var(--navy-900); margin: 0 0 18px;" data-ko>함께 만들어갈 분을 찾습니다.</h3>
+      <h3 style="font-size: 24px; color: var(--navy-900); margin: 0 0 18px;" data-en>We're looking for partners.</h3>
+
+      <form id="partner-form" onsubmit="return submitForm(event, 'partner')">
+        <div class="form-row">
+          <div class="field"><label data-ko>회사·소속 <span class="req">*</span></label><label data-en>Company / Organization <span class="req">*</span></label><input type="text" name="org" required /></div>
+          <div class="field"><label data-ko>담당자 성함 <span class="req">*</span></label><label data-en>Contact Name <span class="req">*</span></label><input type="text" name="name" required /></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label data-ko>이메일 <span class="req">*</span></label><label data-en>Email <span class="req">*</span></label><input type="email" name="email" required /></div>
+          <div class="field"><label data-ko>국가·지역 <span class="req">*</span></label><label data-en>Country / Region <span class="req">*</span></label><input type="text" name="country" required /></div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label data-ko>파트너 유형 <span class="req">*</span></label><label data-en>Partner Type <span class="req">*</span></label>
+            <select name="ptype" required>
+              <option value="" data-ko>선택해 주세요</option><option value="" data-en>Please select</option>
+              <option value="buyer-network" data-ko>① 글로벌 바이어 네트워크</option><option value="buyer-network" data-en>① Global Buyer Network</option>
+              <option value="inspection" data-ko>② 검수·교정 전문가</option><option value="inspection" data-en>② Inspection & Calibration</option>
+              <option value="logistics" data-ko>③ 통관·운송·설치</option><option value="logistics" data-en>③ Logistics & Customs</option>
+              <option value="other" data-ko>기타 협업 제안</option><option value="other" data-en>Other proposal</option>
+            </select>
+          </div>
+          <div class="field">
+            <label data-ko>강점 카테고리</label><label data-en>Category Strength</label>
+            <select name="category">
+              <option value="dental" data-ko>치과</option><option value="dental" data-en>Dental</option>
+              <option value="ultrasound" data-ko>초음파</option><option value="ultrasound" data-en>Ultrasound</option>
+              <option value="ophthalmology" data-ko>안과</option><option value="ophthalmology" data-en>Ophthalmology</option>
+              <option value="endoscope" data-ko>내시경</option><option value="endoscope" data-en>Endoscope</option>
+              <option value="imaging" data-ko>영상장비</option><option value="imaging" data-en>Imaging</option>
+              <option value="multi" data-ko>다중 카테고리</option><option value="multi" data-en>Multi-category</option>
+              <option value="na" data-ko>해당 없음</option><option value="na" data-en>Not applicable</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label data-ko>강점 소개 / 제안 사항 <span class="req">*</span></label><label data-en>Strengths / Proposal <span class="req">*</span></label>
+          <textarea name="proposal" rows="4" required placeholder="예: 베트남·태국 치과 체인 30+ 공급 경험, 연간 거래액 USD 5M..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-teal" style="width: 100%; padding: 16px;">
+          <span data-ko>파트너 신청 보내기</span><span data-en>Submit Partner Application</span>
+          <svg width="14" height="14"><use href="#i-arrow"/></svg>
+        </button>
+        <div class="form-success" id="partner-success">
+          <span data-ko>✓ 이메일 클라이언트가 열렸습니다. 검토 후 1주 이내 회신드립니다.</span>
+          <span data-en>✓ Your email client is now open. We'll review and reply within 1 week.</span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- =============== FAQ =============== -->
+<section id="faq">
+  <div class="container">
+    <div class="section-eyebrow" data-ko>자주 묻는 질문</div>
+    <div class="section-eyebrow" data-en>Frequently Asked</div>
+    <h2 class="reveal" data-ko>먼저 답해드리겠습니다.</h2>
+    <h2 class="reveal" data-en>Common questions, answered upfront.</h2>
+
+    <div class="faq-grid">
+      <details class="faq-item reveal">
+        <summary data-ko>매도 의뢰부터 정산까지 보통 얼마나 걸리나요?</summary>
+        <summary data-en>How long does the full sell-to-settle process take?</summary>
+        <div class="faq-body" data-ko>카테고리·매물 상태·바이어 매칭에 따라 다르지만, 일반적으로 평균 8~12주를 목표로 합니다. 검수 1~2주, 매물 등재·매칭 2~4주, 운송·통관·설치 4~6주. 고가·대형 영상장비의 경우 추가 기간이 소요될 수 있습니다.</div>
+        <div class="faq-body" data-en>It varies by category, condition, and buyer match, but we typically target 8–12 weeks on average: inspection 1–2 wks, listing & matching 2–4 wks, shipping & install 4–6 wks. Larger imaging equipment may require additional time.</div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary data-ko>수수료는 어떻게 책정되나요?</summary>
+        <summary data-en>How are fees structured?</summary>
+        <div class="faq-body" data-ko>거래 수수료 8~13%(셀러 5~8% + 바이어 3~5%)로 KREAM·StockX와 동일한 구조입니다. 검수료는 카테고리·등급별 정액이며, 운송·통관은 별도 견적(통상 15~25% 마진 포함). 모든 비용은 사전 고지됩니다.</div>
+        <div class="faq-body" data-en>Transaction fee is 8–13% (seller 5–8% + buyer 3–5%), same structure as KREAM and StockX. Inspection fee is fixed per category/grade. Shipping & customs are quoted separately (typically 15–25% margin). All costs disclosed upfront.</div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary data-ko>검수는 어디서 어떻게 진행되나요?</summary>
+        <summary data-en>Where and how is inspection conducted?</summary>
+        <div class="faq-body" data-ko>소형 장비(스케일러·임플란트 키트 등)는 매도자 현장 또는 부흥 검수 거점에서 진행합니다. 고가·대형 장비(유닛체어·영상장비)는 출장 검수가 표준입니다. IEC 63077 기반 5개 영역(외관·사용시간·부품 잔존가·교정 이력·S/W)을 평가하며, 결과는 디지털 보고서로 발급됩니다.</div>
+        <div class="faq-body" data-en>Small equipment (scalers, implant kits) is inspected on-site or at our hub. Larger items (chairs, imaging) get standard on-site visits. We evaluate 5 IEC 63077 domains — exterior, usage logs, remaining part life, calibration, software — and issue a digital report.</div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary data-ko>도착 후 결함이 발견되면 어떻게 처리되나요?</summary>
+        <summary data-en>What if a defect is found after delivery?</summary>
+        <div class="faq-body" data-ko>모든 거래는 에스크로로 결제됩니다. 도착 검수 단계에서 보고서와 실물 차이가 확인되면 결제가 정산되지 않고 분쟁 조정 절차로 이관됩니다. 등급별 면책 조항이 명시되어 있어 책임 한계가 사전에 합의됩니다.</div>
+        <div class="faq-body" data-en>Every transaction is escrowed. If post-arrival inspection finds a discrepancy with the report, settlement is held and dispute resolution begins. Liability is clearly bounded by grade-specific disclaimers agreed upfront.</div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary data-ko>제조물 책임(PL) 보험은 어떻게 적용됩니까?</summary>
+        <summary data-en>How does product liability (PL) insurance work?</summary>
+        <div class="faq-body" data-ko>재제조 의료기기 전용 PL 보험에 가입하여 거래마다 자동 적용됩니다. 보험료는 수수료에 포함되며, 등급·카테고리·진입국에 따라 차등 적용됩니다. 임상 환경에서의 사용 책임은 매수자 측 등록 의료기관에 귀속됩니다.</div>
+        <div class="faq-body" data-en>We carry refurbished-medical-device-specific PL insurance, applied to every transaction automatically. Premium is included in our fees and varies by grade, category, and destination. Clinical-use liability remains with the purchasing licensed institution.</div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary data-ko>어느 국가까지 운송 가능합니까?</summary>
+        <summary data-en>Which countries do you ship to?</summary>
+        <div class="faq-body" data-ko>2026 Q3 정식 운영 시점에는 동남아(베트남·태국·인도네시아) 또는 중동(UAE·사우디·GCC) 중 1국으로 시작합니다. 2026 Q4부터 타깃 3국으로 동시 운영되며, 2027년 이후 추가 국가가 열립니다. 진입국이 아닌 지역의 바이어도 사전등록 가능합니다.</div>
+        <div class="faq-body" data-en>At Q3 2026 launch we start with one country — either SE Asia (Vietnam/Thailand/Indonesia) or the Middle East (UAE/Saudi/GCC). From Q4 2026 we operate in 3 target countries; additional countries open from 2027. Buyers outside entry countries can still pre-register.</div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary data-ko>한국 식약처·KGMP 외에 어떤 인허가를 처리합니까?</summary>
+        <summary data-en>What regulatory approvals do you handle?</summary>
+        <div class="faq-body" data-ko>진입 5개국의 인허가 매트릭스를 사전 작성합니다. FDA, CE, ANVISA, ASEAN MDD 등 주요 체계 외에 현지 대리인(Authorized Representative) 계약을 진입 조건으로 요구합니다. 매물별 인허가 적합성은 매물 등재 전 확인됩니다.</div>
+        <div class="faq-body" data-en>We pre-build a regulatory matrix for our 5 target countries. We handle FDA, CE, ANVISA, ASEAN MDD, and require a local Authorized Representative as an entry condition. Per-listing regulatory fit is verified before listing.</div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary data-ko>MEDISTOCK은 정식 명칭인가요?</summary>
+        <summary data-en>Is MEDISTOCK the final brand name?</summary>
+        <div class="faq-body" data-ko>현재는 가칭입니다. 본격 사업화·법인 등록 시 브랜드명을 정식 확정할 예정이며, 그 시점에서 변경될 수 있습니다. 가칭이지만 운영 일정과 사업 구조는 본 사이트의 내용 그대로 진행됩니다.</div>
+        <div class="faq-body" data-en>It's currently tentative. The official brand will be finalized at formal incorporation and may change. The operational schedule and structure described on this site, however, proceed as stated.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- =============== ABOUT =============== -->
+<section style="background: var(--slate-50);">
+  <div class="container">
+    <div class="about">
+      <div>
+        <div class="section-eyebrow" data-ko>운영 주체</div>
+        <div class="section-eyebrow" data-en>Who runs MEDISTOCK</div>
+        <h2 class="reveal" data-ko>부흥팀 — 4대 자산 중 3개를 보유.</h2>
+        <h2 class="reveal" data-en>The Boohung Team — 3 of 4 pillars in-house.</h2>
+        <div class="assets-summary" data-ko>
+          <svg><use href="#i-spark"/></svg>
+          공급 · 검증 · 플랫폼 = 자체 보유  ·  글로벌 수요 = 다중 모집 중
+        </div>
+        <div class="assets-summary" data-en>
+          <svg><use href="#i-spark"/></svg>
+          Supply · Verification · Platform — in-house. Global Demand — multi-channel.
+        </div>
+        <p data-ko style="font-size: 15.5px; color: var(--slate-600); line-height: 1.7;">
+          이 사업의 4대 운영 축(공급·검증·플랫폼·자본) 중 부흥팀은 3개를 직접 보유합니다.
+          마지막 1개 축 "글로벌 수요 채널"은 단일 파트너에 의존하지 않고 다중 파트너 모집으로 분산 확보합니다.
+        </p>
+        <p data-en style="font-size: 15.5px; color: var(--slate-600); line-height: 1.7;">
+          MEDISTOCK requires four operational pillars: supply, verification, platform, and capital.
+          The Boohung team brings three in-house. The fourth — global demand — is being built through multi-partner recruitment, not single-partner dependency.
+        </p>
+      </div>
+      <div class="assets reveal">
+        <div class="asset"><div class="asset-title" data-ko>플랫폼 · IT</div><div class="asset-title" data-en>Platform · IT</div><p class="asset-body" data-ko>마켓플레이스·인증·디지털 보고서 자체 구축.</p><p class="asset-body" data-en>Marketplace, auth, reports built in-house.</p></div>
+        <div class="asset"><div class="asset-title" data-ko>의료기기 엔지니어</div><div class="asset-title" data-en>Medical Engineering</div><p class="asset-body" data-ko>검수 회로 구성, 등급 매뉴얼, 교정 판독.</p><p class="asset-body" data-en>Inspection design, grading manuals, calibration audits.</p></div>
+        <div class="asset"><div class="asset-title" data-ko>병원·의사 인맥</div><div class="asset-title" data-en>Hospital Network</div><p class="asset-body" data-ko>국내 공급 파이프라인 즉시 가동.</p><p class="asset-body" data-en>Direct pipeline to Korean supply.</p></div>
+        <div class="asset"><div class="asset-title" data-ko>초기 자본 일부 자체 조달</div><div class="asset-title" data-en>Self-funded Seed</div><p class="asset-body" data-ko>시드 단계 운영자금 자기 조달 가능.</p><p class="asset-body" data-en>Seed-stage operating capital available.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== FOOTER =============== -->
+<footer class="pattern-dots">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="color: white; margin-bottom: 14px;">
+          <span class="logo-mark"><svg viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M4 19V5l4 9 4-9v14M16 19V5m0 7h4"/></svg></span>
+          MEDISTOCK
+        </div>
+        <p data-ko style="margin: 0 0 8px; max-width: 420px; line-height: 1.65;">인증 기반 글로벌 중고 의료기기 거래 플랫폼.<br/>6개 카테고리 동시 모집 · 2026 Q3 정식 운영.</p>
+        <p data-en style="margin: 0 0 8px; max-width: 420px; line-height: 1.65;">Authenticated marketplace for used medical equipment.<br/>Six categories open for inquiry · Launching Q3 2026.</p>
+        <p style="font-size: 11.5px; color: rgba(255,255,255,0.38); margin-top: 18px;" data-ko>※ MEDISTOCK은 가칭이며, 본격 사업화 시 변경될 수 있습니다.</p>
+        <p style="font-size: 11.5px; color: rgba(255,255,255,0.38); margin-top: 18px;" data-en>* MEDISTOCK is a tentative name and may change upon formal launch.</p>
+      </div>
+      <div>
+        <h4 data-ko>둘러보기</h4><h4 data-en>Explore</h4>
+        <a href="#solution" data-ko>솔루션</a><a href="#solution" data-en>Solution</a>
+        <a href="#categories" data-ko>카테고리</a><a href="#categories" data-en>Categories</a>
+        <a href="#how" data-ko>작동 방식</a><a href="#how" data-en>How it works</a>
+        <a href="#timeline" data-ko>로드맵</a><a href="#timeline" data-en>Roadmap</a>
+        <a href="#estimator" data-ko>시세 추정</a><a href="#estimator" data-en>Estimator</a>
+        <a href="#faq" data-ko>FAQ</a><a href="#faq" data-en>FAQ</a>
+      </div>
+      <div>
+        <h4 data-ko>신청</h4><h4 data-en>Apply</h4>
+        <a href="#seller" data-ko>매도 의뢰</a><a href="#seller" data-en>Sell</a>
+        <a href="#buyer" data-ko>바이어 등록</a><a href="#buyer" data-en>Buyer Pre-register</a>
+        <a href="#partners" data-ko>파트너 신청</a><a href="#partners" data-en>Partner Apply</a>
+        <a href="mailto:kubo63078@gmail.com">kubo63078@gmail.com</a>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <div>© 2026 부흥팀 · MEDISTOCK (가칭)</div>
+      <div data-ko>현재 셀러·바이어·파트너 모집 중</div>
+      <div data-en>Now recruiting sellers, buyers & partners</div>
+    </div>
+  </div>
+</footer>
+
+<!-- =============== STICKY CTA BAR =============== -->
+<div class="sticky-bar" id="sticky-bar">
+  <div class="sticky-bar-inner">
+    <div class="sticky-bar-text">
+      <span class="live-dot"></span>
+      <span data-ko>현재 셀러·바이어·파트너 모집 중</span>
+      <span data-en>Now accepting seller, buyer & partner inquiries</span>
+    </div>
+    <div class="sticky-bar-ctas">
+      <a class="btn btn-secondary" href="#seller" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2);">
+        <span data-ko>매도 의뢰</span><span data-en>Sell</span>
+      </a>
+      <a class="btn btn-teal" href="#partners">
+        <span data-ko>파트너 신청 →</span><span data-en>Partner Apply →</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- =============== MODAL: SAMPLE INSPECTION REPORT =============== -->
+<div class="modal-backdrop" id="modal-sample-report" onclick="closeModal(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModalById('sample-report')">×</button>
+    <div class="report-page">
+      <div class="report-head">
+        <div>
+          <h3 data-ko>디지털 검수 보고서</h3>
+          <h3 data-en>Digital Inspection Report</h3>
+          <div style="font-size: 11.5px; color: var(--slate-500); margin-top: 6px;" data-ko>※ 익명화된 샘플 — 실제 양식 참고용</div>
+          <div style="font-size: 11.5px; color: var(--slate-500); margin-top: 6px;" data-en>* Anonymized sample — for format reference</div>
+        </div>
+        <div class="report-head-meta">
+          <div class="report-meta-id">MED-2026-D-0042</div>
+          <div style="margin-top: 4px;" data-ko>발급일 · 2026.04.18</div>
+          <div style="margin-top: 4px;" data-en>Issued · 2026-04-18</div>
+        </div>
+      </div>
+
+      <div class="report-row">
+        <strong data-ko>장비 분류</strong><strong data-en>Category</strong>
+        <span data-ko>치과 유닛체어 · 프리미엄 라인 (2018년 시리즈)</span>
+        <span data-en>Dental Unit Chair · Premium Line (2018 series)</span>
+      </div>
+      <div class="report-row">
+        <strong data-ko>매도자</strong><strong data-en>Submitted by</strong>
+        <span data-ko>서울 소재 치과 · 익명 처리</span>
+        <span data-en>Seoul-based dental clinic · anonymized</span>
+      </div>
+      <div class="report-row">
+        <strong data-ko>검수 일자</strong><strong data-en>Inspection Date</strong>
+        <span data-ko>2026.04.16 (방문 검수)</span>
+        <span data-en>2026-04-16 (On-site)</span>
+      </div>
+      <div class="report-row">
+        <strong data-ko>검수자</strong><strong data-en>Inspector</strong>
+        <span data-ko>부흥팀 의료기기 엔지니어</span>
+        <span data-en>Boohung Medical Engineer Team</span>
+      </div>
+      <div class="report-row">
+        <strong data-ko>표준</strong><strong data-en>Standards</strong>
+        <span>IEC 63077:2019 · ISO 13485:2016</span>
+      </div>
+
+      <div class="report-section-title" data-ko>5개 영역 평가</div>
+      <div class="report-section-title" data-en>5-Domain Evaluation</div>
+      <div class="report-eval"><div class="domain" data-ko>① 외관 · 기능</div><div class="domain" data-en>① Exterior · Function</div><div class="score">88 / 100</div></div>
+      <div class="report-eval"><div class="domain" data-ko>② 사용시간 로그</div><div class="domain" data-en>② Usage Log</div><div class="score" data-ko>3,420시간 (수명 약 75%)</div><div class="score" data-en>3,420 hrs (~75% remaining)</div></div>
+      <div class="report-eval"><div class="domain" data-ko>③ 부품 잔존가</div><div class="domain" data-en>③ Part Life Remaining</div><div class="score">~75%</div></div>
+      <div class="report-eval"><div class="domain" data-ko>④ 교정 이력</div><div class="domain" data-en>④ Calibration History</div><div class="score" data-ko>최근 2025.09 (적합)</div><div class="score" data-en>Last 2025-09 (compliant)</div></div>
+      <div class="report-eval"><div class="domain" data-ko>⑤ S/W 버전</div><div class="domain" data-en>⑤ Software Version</div><div class="score" data-ko>제조사 최신 (Firmware v4.2.1)</div><div class="score" data-en>Vendor latest (FW v4.2.1)</div></div>
+
+      <div class="report-final">
+        <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; color: var(--teal-700);" data-ko>최종 등급</div>
+        <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; color: var(--teal-700);" data-en>FINAL GRADE</div>
+        <div class="report-final-grade">A</div>
+        <div class="report-final-text" data-ko>우수 (Excellent) · 종합 점수 86 / 100</div>
+        <div class="report-final-text" data-en>Excellent · Composite score 86 / 100</div>
+        <div class="report-final-price" data-ko>추천 가격대 · $12,500 – $15,000</div>
+        <div class="report-final-price" data-en>Recommended Price Range · $12,500 – $15,000</div>
+        <div style="font-size: 12.5px; color: var(--slate-600); margin-top: 10px;" data-ko>
+          국경 간 거래 적합. PL 보험 적용 가능. 운송·통관 표준 패키지 지원.
+        </div>
+        <div style="font-size: 12.5px; color: var(--slate-600); margin-top: 10px;" data-en>
+          Suitable for cross-border listing. PL insurance applicable. Standard logistics package supported.
+        </div>
+      </div>
+
+      <div class="report-disclaimer" data-ko>
+        ※ 본 보고서는 발급일 기준 매물 상태에 대한 검수 의견이며, 등급별 면책 조항이 적용됩니다.
+        실제 거래 시 매물별 상세 보고서가 별도 발급되며, 7년간 보관됩니다.
+      </div>
+      <div class="report-disclaimer" data-en>
+        * This report reflects the inspection opinion as of the issue date, subject to grade-specific disclaimers.
+        Each actual transaction receives its own detailed report, retained for 7 years.
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ---- Auto language detection (first visit only) ----
+  (function() {
+    try {
+      var saved = localStorage.getItem('medistock-lang');
+      if (saved === 'en' || saved === 'ko') {
+        setLang(saved);
+        return;
+      }
+      var nav = (navigator.language || 'en').toLowerCase();
+      if (!nav.startsWith('ko')) setLang('en');
+    } catch (e) {}
+  })();
+
+  function setLang(lang) {
+    document.body.classList.remove('lang-ko', 'lang-en');
+    document.body.classList.add('lang-' + lang);
+    document.documentElement.setAttribute('lang', lang);
+    var ko = document.getElementById('btn-ko'), en = document.getElementById('btn-en');
+    if (ko) ko.classList.toggle('active', lang === 'ko');
+    if (en) en.classList.toggle('active', lang === 'en');
+    try { localStorage.setItem('medistock-lang', lang); } catch (e) {}
+  }
+
+  // ---- Tabs ----
+  function switchTab(which) {
+    document.getElementById('tab-sellerflow').classList.toggle('active', which === 'sellerflow');
+    document.getElementById('tab-buyerflow').classList.toggle('active', which === 'buyerflow');
+    document.getElementById('tab-btn-seller').classList.toggle('active', which === 'sellerflow');
+    document.getElementById('tab-btn-buyer').classList.toggle('active', which === 'buyerflow');
+  }
+
+  // ---- Form submit (mailto) ----
+  function submitForm(ev, type) {
+    ev.preventDefault();
+    var form = ev.target;
+    var data = new FormData(form);
+    var lines = [];
+    var label;
+    if (type === 'seller') label = '[MEDISTOCK] 매도 의뢰 - Seller Submission';
+    else if (type === 'buyer') label = '[MEDISTOCK] 바이어 사전등록 - Buyer Pre-registration';
+    else if (type === 'partner') label = '[MEDISTOCK] 파트너 신청 - Partner Application';
+    else label = '[MEDISTOCK] Inquiry';
+    data.forEach(function (value, key) { lines.push(key + ': ' + value); });
+    var body = lines.join('\n') + '\n\n— Submitted via MEDISTOCK landing v3';
+    var mailto = 'mailto:kubo63078@gmail.com?subject=' + encodeURIComponent(label) + '&body=' + encodeURIComponent(body);
+    window.location.href = mailto;
+    document.getElementById(type + '-success').classList.add('show');
+    return false;
+  }
+
+  // ---- Estimator ----
+  // Base prices (USD) for category × condition Excellent at 1-yr-old
+  var BASE = {
+    'dental-chair': 22000,
+    'dental-pano':  35000,
+    'implant':       8000,
+    'scaler':        3000,
+    'ultrasound':   18000,
+    'endoscope':    24000
+  };
+  var COND_MULT = { excellent: 1.0, good: 0.85, fair: 0.65, needs: 0.45 };
+
+  function estimate() {
+    var cat = document.getElementById('est-cat').value;
+    var year = parseInt(document.getElementById('est-year').value);
+    var cond = document.getElementById('est-cond').value;
+    if (!cat || !year || !cond) {
+      alert(document.body.classList.contains('lang-en') ? 'Please select all three fields.' : '3개 항목을 모두 선택해 주세요.');
+      return;
+    }
+    var age = Math.max(0, 2026 - year);
+    var depreciation = Math.pow(0.86, age); // ~14% annual
+    var condM = COND_MULT[cond];
+    var basePrice = BASE[cat] || 10000;
+    var center = basePrice * depreciation * condM;
+    var lo = Math.round(center * 0.85 / 100) * 100;
+    var hi = Math.round(center * 1.15 / 100) * 100;
+
+    // Grade band based on condition + age
+    var score = 100 - age * 4;
+    if (cond === 'excellent') score -= 0;
+    else if (cond === 'good') score -= 10;
+    else if (cond === 'fair') score -= 22;
+    else score -= 38;
+
+    var grade, gradeRange, gradeLabel;
+    if (score >= 92)      { grade = 'S';  gradeRange = 'S – A'; gradeLabel = '거의 신품 수준'; gradeLabelEn = 'Near-new'; }
+    else if (score >= 80) { grade = 'A';  gradeRange = 'A – B'; gradeLabel = '우수 등급 예상'; gradeLabelEn = 'Excellent expected'; }
+    else if (score >= 65) { grade = 'B';  gradeRange = 'B – C'; gradeLabel = '양호 등급 예상'; gradeLabelEn = 'Good expected'; }
+    else if (score >= 45) { grade = 'C';  gradeRange = 'C';     gradeLabel = '보통 (리퍼비시 권장)'; gradeLabelEn = 'Fair (refurb recommended)'; }
+    else                  { grade = 'D';  gradeRange = 'C – D'; gradeLabel = '부품·교체 가치 위주'; gradeLabelEn = 'Parts/replacement value'; }
+
+    var fmt = function(n) { return '$' + n.toLocaleString(); };
+    var isEn = document.body.classList.contains('lang-en');
+
+    document.getElementById('est-out').innerHTML =
+      '<div class="est-result-eyebrow">' + (isEn ? 'Estimated' : '예상 결과') + '</div>' +
+      '<div class="est-grade">' + gradeRange + '</div>' +
+      '<div class="est-grade-sub">' + (isEn ? gradeLabelEn : gradeLabel) + '</div>' +
+      '<div class="est-price-label">' + (isEn ? 'Suggested Price Range' : '추천 가격대') + '</div>' +
+      '<div class="est-price">' + fmt(lo) + ' – ' + fmt(hi) + '</div>' +
+      '<div class="est-disclaimer">' +
+        (isEn
+          ? 'This is a rough estimate. Official grade and pricing are determined by formal inspection. <a href="#seller" style="color:var(--teal-400);">Submit for inspection →</a>'
+          : '대략적인 추정값입니다. 공식 등급과 가격은 정식 검수에서 결정됩니다. <a href="#seller" style="color:var(--teal-400);">정식 검수 의뢰 →</a>') +
+      '</div>';
+  }
+
+  // ---- Modal ----
+  function openModal(name) {
+    var el = document.getElementById('modal-' + name);
+    if (el) { el.classList.add('show'); document.body.style.overflow = 'hidden'; }
+  }
+  function closeModalById(name) {
+    var el = document.getElementById('modal-' + name);
+    if (el) { el.classList.remove('show'); document.body.style.overflow = ''; }
+  }
+  function closeModal(ev) {
+    if (ev.target.classList.contains('modal-backdrop')) {
+      ev.target.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-backdrop.show').forEach(function(m) { m.classList.remove('show'); });
+      document.body.style.overflow = '';
+    }
+  });
+
+  // ---- Sticky bar appears after scrolling past hero ----
+  (function() {
+    var bar = document.getElementById('sticky-bar');
+    var threshold = 600;
+    if (!bar) return;
+    var lastY = 0;
+    window.addEventListener('scroll', function() {
+      var y = window.scrollY;
+      // Hide on bottom (footer area)
+      var nearBottom = (window.innerHeight + y) > (document.body.scrollHeight - 280);
+      if (y > threshold && !nearBottom) bar.classList.add('show');
+      else bar.classList.remove('show');
+      lastY = y;
+    }, { passive: true });
+  })();
+
+  // ---- Scroll reveal (IntersectionObserver) ----
+  (function() {
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('.reveal').forEach(function(el) { el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
+  })();
+</script>
+
+</body>
+</html>

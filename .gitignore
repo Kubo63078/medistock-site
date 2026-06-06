@@ -1,0 +1,13 @@
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# 임시
+*.tmp
+*.bak
+*~
+
+# 환경 파일
+.env
